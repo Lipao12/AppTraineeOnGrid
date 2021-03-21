@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppTreineeOnGrid</string>
+    <string name="R1">A</string>
+    <string name="R2">B</string>
+    <string name="R3">C</string>
+    <string name="pergunta">PERGUNTAS</string>
+    <string name="vcSabia">Você Sabia?</string>
+    <string name="score">Score: 0</string>
+    <string name="b_continuar">Continuar</string>
+    <string name="curiosidade">Curiosidades</string>
+</resources>
