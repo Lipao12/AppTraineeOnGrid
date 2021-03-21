@@ -125,7 +125,7 @@
         android:layout_width="215dp"
         android:layout_height="139dp"
         android:gravity="center"
-        android:text="@string/app_name"
+        android:text="@string/curiosidade"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
