@@ -283,9 +283,9 @@ public class TelaJogo extends AppCompatActivity {
 
     private void pintarBotoes()
     {
-        mViewHolder.r1.setBackgroundColor(0xB9673AB7);
-        mViewHolder.r2.setBackgroundColor(0xB9673AB7);
-        mViewHolder.r3.setBackgroundColor(0xB9673AB7);
+        mViewHolder.r1.setBackgroundColor(0xFFFFFFFF);
+        mViewHolder.r2.setBackgroundColor(0xFFFFFFFF);
+        mViewHolder.r3.setBackgroundColor(0xFFFFFFFF);
     }
 
     private void respostaCorreta()
