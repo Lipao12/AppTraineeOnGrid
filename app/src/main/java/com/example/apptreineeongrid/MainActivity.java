@@ -1,3 +1,5 @@
+// DESCOBRIR UM JEITO DE COMECAR O JOGO DIRETO
+
 package com.example.apptreineeongrid;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private ViewHolder mViewHolder = new ViewHolder();
+    TelaJogo t1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +25,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,TelaJogo.class);
+                intent.putExtra("iniciar", true);
                 startActivity(intent);
             }
         });
 
     }
 
-    static class ViewHolder{
+    public static class ViewHolder{
         Button b_jogo;
     }
-
 
 }

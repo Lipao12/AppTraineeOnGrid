@@ -9,4 +9,5 @@
     <string name="score">Score: 0</string>
     <string name="b_continuar">Continuar</string>
     <string name="curiosidade">Curiosidades</string>
+    <string name="textview">TextView</string>
 </resources>
