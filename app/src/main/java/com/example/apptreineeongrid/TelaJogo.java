@@ -1,7 +1,15 @@
 package com.example.apptreineeongrid;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
+import android.app.MediaRouteButton;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,13 +27,13 @@ public class TelaJogo extends AppCompatActivity {
     private ArrayList<String> resp_errada;
     private ArrayList<String> resp_correta;
     private ArrayList<String> curiosidades;
-    private ArrayList<Integer> pergs_fazer;
+    public ArrayList<Integer> pergs_fazer;
     private ArrayList<Integer> botoes_acertar;
     private int x;
     private int i;
     private int num_pergunta;
-    private int score=0;
-    private Boolean rClicado=true;
+    public int score;
+    private static Boolean rClicado=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +43,14 @@ public class TelaJogo extends AppCompatActivity {
         this.mViewHolder.r1 = findViewById(R.id.Opc1);
         this.mViewHolder.r2 = findViewById(R.id.Opc2);
         this.mViewHolder.r3 = findViewById(R.id.Opc3);
-        this.mViewHolder.sair_vcSabia = findViewById(R.id.sair_vcSabia);
         this.mViewHolder.b_continuar = findViewById(R.id.continuar);
+        this.mViewHolder.b_vcSabia = findViewById(R.id.vcSabia);
         this.mViewHolder.pergunta_texto = findViewById(R.id.pergunta);
-        this.mViewHolder.b_vcSabia = findViewById(R.id.VcSabia);
+        this.mViewHolder.imagem_perguntas = findViewById(R.id.imageView);
         this.mViewHolder.score_texto = findViewById(R.id.score);
-        this.mViewHolder.imagem_vcSabia = findViewById(R.id.imageView);
-        this.mViewHolder.texto_vcSabia = findViewById(R.id.texto_vcSabia);
+
+        /*Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(res, android.R.drawable.toast_frame,null);*/
 
         perguntas = new ArrayList<>();
         resp_errada = new ArrayList<>();
@@ -50,87 +59,74 @@ public class TelaJogo extends AppCompatActivity {
         pergs_fazer = new ArrayList<>();
         botoes_acertar = new ArrayList<>();
 
-        mViewHolder.imagem_vcSabia.setVisibility(View.GONE);
-        mViewHolder.sair_vcSabia.setVisibility(View.GONE);
-        mViewHolder.texto_vcSabia.setVisibility(View.GONE);
-
-        //PERGUNTAS E RESPOSTAS
-        inicializarPerguntas();
-
-        for (x=0;x<perguntas.size()-1;x++)
+        boolean start=getIntent().getExtras().getBoolean("iniciar");
+        if(start)
         {
-            pergs_fazer.add(x);
-        }
-        for (i=0;i<3;i++)
-        {
-            botoes_acertar.add(i);
+            mViewHolder.b_continuar.setVisibility(View.GONE);
+            mViewHolder.b_vcSabia.setVisibility(View.GONE);
+            score=0;
+            inicializarPerguntas();
+            for (x=0;x<perguntas.size();x++)
+            {
+                pergs_fazer.add(x);
+            }
+            for (i=0;i<3;i++)
+            {
+                botoes_acertar.add(i);
+            }
+            start=false;
+            gerarPerguntasAleatorias();
         }
 
-        // GERAR PERGUNTAS ALEATÓRIAS
         mViewHolder.b_continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rClicado = false;
+                mViewHolder.r1.setBackgroundColor(0xFFFFFFFF);
+                mViewHolder.r2.setBackgroundColor(0xFFFFFFFF);
+                mViewHolder.r3.setBackgroundColor(0xFFFFFFFF);
 
-                pintarBotoes();
-
+                mViewHolder.b_continuar.setVisibility(View.GONE);
                 mViewHolder.b_vcSabia.setVisibility(View.GONE);
-                mViewHolder.b_continuar.setVisibility((View.GONE));
-
-                //VALIDAR PERGUNTA
-                if (pergs_fazer.size() > 0) {
-                    x = new Random().nextInt(pergs_fazer.size());
-                    num_pergunta = pergs_fazer.get(x);
-
-                    //GERAR LUGARES DE RESPOSTA ALEATORIO
-                    i = new Random().nextInt(botoes_acertar.size());
-                    System.out.println("Tamanho do veror que comtem os botões: " + botoes_acertar.size());
-                    System.out.println("Número dos botões aleatório: " + i);
-                    if (i == 1) {
-                        mViewHolder.r1.setText(resp_correta.get(num_pergunta));
-                        mViewHolder.r2.setText(resp_errada.get(2 * num_pergunta));
-                        mViewHolder.r3.setText(resp_errada.get(2 * num_pergunta + 1));
-                    } else if (i == 2) {
-                        mViewHolder.r2.setText(resp_correta.get(num_pergunta));
-                        mViewHolder.r1.setText(resp_errada.get(2 * num_pergunta));
-                        mViewHolder.r3.setText(resp_errada.get(2 * num_pergunta + 1));
-                    } else {
-                        mViewHolder.r3.setText(resp_correta.get(num_pergunta));
-                        mViewHolder.r1.setText(resp_errada.get(2 * num_pergunta));
-                        mViewHolder.r2.setText(resp_errada.get(2 * num_pergunta + 1));
-                    }
-
-                    pergs_fazer.remove(x);
-                } else if (pergs_fazer.size() == 0) {
-                    num_pergunta = perguntas.size() - 1;
-                    mViewHolder.r1.setText("A");
-                    mViewHolder.r2.setText("B");
-                    mViewHolder.r3.setText("C");
-                    rClicado = true;
-                }
-
-                mViewHolder.pergunta_texto.setText(perguntas.get(num_pergunta));
-                mViewHolder.texto_vcSabia.setText(curiosidades.get(num_pergunta));
+                mViewHolder.pergunta_texto.setVisibility(View.VISIBLE);
+                mViewHolder.imagem_perguntas.setVisibility(View.VISIBLE);
+                gerarPerguntasAleatorias();
             }
         });
 
-        // VALIDAR RESPOSTA
-        mViewHolder.r1.setOnClickListener(new View.OnClickListener() {
+        mViewHolder.b_vcSabia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!rClicado)
+                Intent intent = new Intent(TelaJogo.this,TelaCuriosidade.class);
+                intent.putExtra("curiosidade",curiosidades.get(num_pergunta));
+                startActivity(intent);
+            }
+        });
+
+
+        // VALIDAR RESPOSTA
+        mViewHolder.r1.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+               if(!rClicado)
                 {
+                    rClicado=true;
+                    mViewHolder.b_continuar.setVisibility(View.VISIBLE);
+                    mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
+                    mViewHolder.pergunta_texto.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+
                     if(mViewHolder.r1.getText() == resp_correta.get(num_pergunta))
                     {
-                        respostaCorreta();
-                        mViewHolder.r1.setBackgroundColor(0xBA4CAF50);
+                        score++;
+                        mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.r1.setBackgroundColor(0xD806B50D);
                     }
                     else
-                        mViewHolder.pergunta_texto.setText("Resposta Errada");
-
-                    mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
-                    mViewHolder.b_continuar.setVisibility((View.VISIBLE));
-                    rClicado=true;
+                    {
+                        mViewHolder.r1.setBackgroundColor(0xFFCA1010);
+                        acharRespCorreta();
+                    }
                 }
             }
         });
@@ -139,17 +135,23 @@ public class TelaJogo extends AppCompatActivity {
             public void onClick(View v) {
                 if(!rClicado)
                 {
+                    rClicado=true;
+                    mViewHolder.b_continuar.setVisibility(View.VISIBLE);
+                    mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
+                    mViewHolder.pergunta_texto.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+
                     if(mViewHolder.r2.getText() == resp_correta.get(num_pergunta))
                     {
-                        respostaCorreta();
-                        mViewHolder.r2.setBackgroundColor(0xBA4CAF50);
+                        score++;
+                        mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.r2.setBackgroundColor(0xD806B50D); // verde
                     }
                     else
-                        mViewHolder.pergunta_texto.setText("Resposta Errada");
-
-                    mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
-                    mViewHolder.b_continuar.setVisibility((View.VISIBLE));
-                    rClicado=true;
+                    {
+                        mViewHolder.r2.setBackgroundColor(0xFFCA1010);
+                        acharRespCorreta();
+                    }
                 }
             }
         });
@@ -158,55 +160,36 @@ public class TelaJogo extends AppCompatActivity {
             public void onClick(View v) {
                 if(!rClicado)
                 {
+                    rClicado=true;
+                    mViewHolder.b_continuar.setVisibility(View.VISIBLE);
+                    mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
+                    mViewHolder.pergunta_texto.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
                     if(mViewHolder.r3.getText() == resp_correta.get(num_pergunta))
                     {
-                        respostaCorreta();
-                        mViewHolder.r3.setBackgroundColor(0xBA4CAF50);
+                        score++;
+                        mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.r3.setBackgroundColor(0xD806B50D);
                     }
                     else
-                        mViewHolder.pergunta_texto.setText("Resposta Errada");
-
-                    mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
-                    mViewHolder.b_continuar.setVisibility((View.VISIBLE));
-                    rClicado=true;
+                    {
+                        mViewHolder.r3.setBackgroundColor(0xFFCA1010);
+                        acharRespCorreta();
+                    }
                 }
             }
         });
-
-        mViewHolder.b_vcSabia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewHolder.imagem_vcSabia.setVisibility(View.VISIBLE);
-                mViewHolder.sair_vcSabia.setVisibility(View.VISIBLE);
-                mViewHolder.texto_vcSabia.setVisibility(View.VISIBLE);
-                mViewHolder.b_continuar.setVisibility(View.GONE);
-                mViewHolder.b_vcSabia.setVisibility(View.GONE);
-            }
-        });
-
-        mViewHolder.sair_vcSabia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mViewHolder.imagem_vcSabia.setVisibility(View.GONE);
-                mViewHolder.sair_vcSabia.setVisibility(View.GONE);
-                mViewHolder.texto_vcSabia.setVisibility(View.GONE);
-                mViewHolder.b_continuar.setVisibility(View.VISIBLE);
-                mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
-            }
-        });
-
     }
-    private static class ViewHolder{
-        Button b_continuar;
+
+    public static class ViewHolder{
         Button r1;
         Button r2;
         Button r3;
-        ImageButton sair_vcSabia;
+        Button b_continuar;
+        Button b_vcSabia;
         TextView pergunta_texto;
-        TextView b_vcSabia;
         TextView score_texto;
-        ImageView imagem_vcSabia;
-        TextView texto_vcSabia;
+        ImageView imagem_perguntas;
     }
 
     private void inicializarPerguntas()
@@ -277,22 +260,63 @@ public class TelaJogo extends AppCompatActivity {
         resp_errada.add("-1/(1+x^2)");
         resp_errada.add("1/(1-x^2)");
 
-        perguntas.add("Acabaram as Perguntas");
-        curiosidades.add("Curiosidades");
+        /*perguntas.add("Acabaram as Perguntas");
+        curiosidades.add("Curiosidades");*/
     }
 
-    private void pintarBotoes()
+    public void gerarPerguntasAleatorias()
     {
-        mViewHolder.r1.setBackgroundColor(0xFFFFFFFF);
-        mViewHolder.r2.setBackgroundColor(0xFFFFFFFF);
-        mViewHolder.r3.setBackgroundColor(0xFFFFFFFF);
+          rClicado = false;
+
+        //VALIDAR PERGUNTA
+        if (pergs_fazer.size() > 0) {
+            x = new Random().nextInt(pergs_fazer.size());
+            num_pergunta = pergs_fazer.get(x);
+
+            //GERAR LUGARES DE RESPOSTA ALEATORIO
+            i = new Random().nextInt(botoes_acertar.size());
+            if (i == 1) {
+                mViewHolder.r1.setText(resp_correta.get(num_pergunta));
+                mViewHolder.r2.setText(resp_errada.get(2 * num_pergunta));
+                mViewHolder.r3.setText(resp_errada.get(2 * num_pergunta + 1));
+            } else if (i == 2) {
+                mViewHolder.r2.setText(resp_correta.get(num_pergunta));
+                mViewHolder.r1.setText(resp_errada.get(2 * num_pergunta));
+                mViewHolder.r3.setText(resp_errada.get(2 * num_pergunta + 1));
+            } else {
+                mViewHolder.r3.setText(resp_correta.get(num_pergunta));
+                mViewHolder.r1.setText(resp_errada.get(2 * num_pergunta));
+                mViewHolder.r2.setText(resp_errada.get(2 * num_pergunta + 1));
+            }
+
+            pergs_fazer.remove(x);
+        } else if (pergs_fazer.size() == 0) {
+            finish();
+        }
+
+        mViewHolder.pergunta_texto.setText(perguntas.get(num_pergunta));
     }
 
-    private void respostaCorreta()
+    public static void set_rClicado(boolean clicado)
     {
-        mViewHolder.pergunta_texto.setText("Resposta Correta");
-        score++;
-        mViewHolder.score_texto.setText("Score: "+score);
+        rClicado=clicado;
+    }
+
+    public void acharRespCorreta()
+    {
+        if(resp_correta.get(num_pergunta) == mViewHolder.r1.getText())
+        {
+            mViewHolder.r1.setBackgroundColor(0xD806B50D);
+        }
+        else if(resp_correta.get(num_pergunta) == mViewHolder.r2.getText())
+        {
+            mViewHolder.r2.setBackgroundColor(0xD806B50D);
+        }
+        else
+        {
+            mViewHolder.r3.setBackgroundColor(0xD806B50D);
+        }
     }
 
 }
+
