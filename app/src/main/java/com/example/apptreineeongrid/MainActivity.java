@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        mViewHolder.b_jogo = findViewById(R.id.botao_iniciar_game);
+        this.mViewHolder.b_jogo = findViewById(R.id.botao_iniciar_game);
 
         mViewHolder.b_jogo.setOnClickListener(new View.OnClickListener() {
             @Override

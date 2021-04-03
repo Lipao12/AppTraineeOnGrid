@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#161F54"
+    android:background="@drawable/unknown__2_"
     tools:context=".TelaJogo">
 
     <Button
@@ -14,7 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:text="@string/R1"
-        android:textColor="#161F54"
+        android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="@string/R2"
-        android:textColor="#161F54"
+        android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="@string/R3"
-        android:textColor="#161F54"
+        android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:text="@string/b_continuar"
-        android:textColor="#161F54"
+        android:textColor="#071e50"
         android:textSize="10sp"
         android:visibility="visible"
         app:backgroundTint="#FFFFFF"
@@ -78,22 +78,21 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.199" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="204dp"
+        android:layout_width="408dp"
+        android:layout_height="273dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354"
+        app:layout_constraintVertical_bias="0.31"
         app:srcCompat="@drawable/blank" />
 
     <TextView
@@ -103,7 +102,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/pergunta"
         android:textAlignment="center"
-        android:textColor="#161F54"
+        android:textColor="#071e50"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -115,7 +114,7 @@
         android:layout_width="100dp"
         android:layout_height="64dp"
         android:text="@string/vcSabia"
-        app:backgroundTint="#161F54"
+        app:backgroundTint="#071e50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
