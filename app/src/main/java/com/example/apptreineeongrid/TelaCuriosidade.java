@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ public class TelaCuriosidade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_curiosidade);
 
-        this.mViewHolder.voltar = findViewById(R.id.voltar);
+        this.mViewHolder.voltar = findViewById(R.id.voltarTD);
         this.mViewHolder.curiosidade = findViewById(R.id.curiosidade_texto);
 
         mViewHolder.curiosidade.setText(getIntent().getExtras().getString("curiosidade"));

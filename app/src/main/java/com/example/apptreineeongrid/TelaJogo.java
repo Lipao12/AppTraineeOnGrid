@@ -139,7 +139,7 @@ public class TelaJogo extends AppCompatActivity {
                     if(mViewHolder.r1.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
-                        mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.score_texto.setText(""+score);
                         mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
@@ -167,7 +167,7 @@ public class TelaJogo extends AppCompatActivity {
                     if(mViewHolder.r2.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
-                        mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.score_texto.setText(""+score);
                         mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
@@ -194,7 +194,7 @@ public class TelaJogo extends AppCompatActivity {
                     if(mViewHolder.r3.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
-                        mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.score_texto.setText(""+score);
                         mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
@@ -325,6 +325,79 @@ public class TelaJogo extends AppCompatActivity {
             resp_correta.add("Usina solar de Tauá");
             resp_errada.add("Complexo solar Lapa");
             resp_errada.add("Usina solar São Gonçalo");
+
+            perguntas.add("Quando foi observado pela primeira vez o Efeito fotovoltaico?");
+            curiosidades.add("O efeito fotovoltaico foi observado pela primeira vez em 1839 por Edmond Becquerel que verificou que placas metálicas, de platina ou prata, mergulhadas num eletrólito, produziam uma pequena diferença de potencial quando expostas à luz.");
+            resp_correta.add("1839");
+            resp_errada.add("1996");
+            resp_errada.add("1742");
+
+            perguntas.add("Quando ocorreu a primeira construção da célula solar?");
+            curiosidades.add("A história da primeira célula solar começou em Março de 1953 quando Calvin Fuller, um químico dos Bell Laboratories (Bell Labs), em Murray Hill, New Jersey, nos EUA, desenvolveu um processo de difusão para introduzir impurezas em cristais de silício, de modo a controlar as suas propriedades eléctricas.");
+            resp_correta.add("1953");
+            resp_errada.add("1998");
+            resp_errada.add("1945");
+
+            perguntas.add("A primeira demonstração da célula solar foi:");
+            curiosidades.add("Nas páginas do New York Times podia ler-se que aquela primeira célula solar “marca o princípio de uma nova era, levando, eventualmente, à realização de um dos mais belos sonhos da humanidade: a colheita de energia solar sem limites, para o bem-estar da civilização”");
+            resp_correta.add("Em uma transmissão via rádio");
+            resp_errada.add("Para ligar uma televisão");
+            resp_errada.add("Para acender uma lâmpada");
+
+            perguntas.add("Qual foi a primeira aplicação das células solares?");
+            curiosidades.add("A primeira aplicação das células solares de Chapin, Fuller e Pearson foi realizada em Americus, no estado da Georgia, para alimentar uma rede telefónica local ");
+            resp_correta.add("Alimentar um rede telefônica ");
+            resp_errada.add("Em uma lanterna");
+            resp_errada.add("Em uma máquina de costura");
+
+            perguntas.add("Qual a principal dificuldade reconhecida no passado e presente até os dias atuais em relação a instalação de módulos solares?");
+            curiosidades.add("Uma das primeiras dificuldades encontradas e compreendidas foi que o custo das células solares era demasiado elevado, pelo que a sua utilização só podia ser economicamente competitiva em aplicações muito especiais, como, por exemplo, para produzir eletricidade no espaço.");
+            resp_correta.add("Custo elevado dos módulos solares");
+            resp_errada.add("Necessidade de troca de peças mensalmente");
+            resp_errada.add("Falta de profissionais adequados");
+
+            perguntas.add("A primeira oportunidade de uso da energia solar foi:");
+            curiosidades.add("Para uso inicial de produção de eletricidade no espaço, os satélites usaram pilhas químicas ou baseadas em isótopos radioativos. As células solares eram consideradas uma curiosidade, e foi com grande relutância que a NASA aceitou incorporá-las");
+            resp_correta.add("No espaço");
+            resp_errada.add("Nas residências");
+            resp_errada.add("Em praças públicas");
+
+            perguntas.add("Quais países mais utilizam energia solar?");
+            curiosidades.add("Os países mais desenvolvidos no aproveitamento da energia solar são a Alemanha, a Itália, o Japão, a Espanha e os Estados Unidos. Esses países promoveram programas para incentivar a utilização dos sistemas fotovoltaicos.");
+            resp_correta.add("Alemanha, Japão e EUA");
+            resp_errada.add("Brasil, Rússia e Japão");
+            resp_errada.add("Japão, Espanha e China");
+
+            perguntas.add("Qual o estado brasileiro que possui a maior potência de energia solar instalada?");
+            curiosidades.add("");
+            resp_correta.add("Minas Gerais");
+            resp_errada.add("São Paulo");
+            resp_errada.add("Rio de Janeiro");
+
+            perguntas.add("No Brasil o principal uso da energia solar é:");
+            curiosidades.add("A energia solar está sendo utilizada no Brasil majoritariamente em residências, como uma auxiliar na redução da conta de luz, seja por meio da energia térmica, aquecendo água, ou com a utilização da energia fotovoltaica, gerando eletricidade.");
+            resp_correta.add("Nas residências");
+            resp_errada.add("Em postes de luz");
+            resp_errada.add("Nas indústrias");
+
+            perguntas.add("O que incentiva as pessoas a instalarem sistemas fotovoltaicos no Brasil?");
+            curiosidades.add("Com a redução progressiva dos custos, o aumento do rendimento dos sistemas solares, e a elevação das tarifas das concessionárias de distribuição de energia, a paridade de custo final da energia produzida pelos sistemas fotovoltaicos e das tarifas das concessionárias já é uma realidade, o que incentiva a autoprodução de energia.");
+            resp_correta.add("Foco na redução da conta de energia elétrica");
+            resp_errada.add("Foco na questão ambiental");
+            resp_errada.add("Foco em status social");
+
+            perguntas.add("Qual dessas não é uma vantagem da energia Solar?");
+            curiosidades.add("O custo inicial para montar um sistema solar é bastante avultado, devido aos equipamentos.");
+            resp_correta.add("Alto custo de instalação");
+            resp_errada.add("É renovável e gratuita");
+            resp_errada.add("Não ocupam espaço físico");
+
+            perguntas.add("Qual dessas não é uma desvantagem da energia Solar?");
+            curiosidades.add("Embora os equipamentos solares exijam um investimento inicial mais avultado, esse investimento é recuperado, graças ao dinheiro economizado nas contas de eletricidade, água e gás.");
+            resp_correta.add("Os investimentos de instalação é recuperado com o passar do tempo");
+            resp_errada.add("Se não houver sol, não haverá produção de energia");
+            resp_errada.add("Necessidade de estar conectado à rede ou possuir armazenamento durante a noite");
+
         }
 
         else if(dificuldade == 'm')
@@ -374,6 +447,60 @@ public class TelaJogo extends AppCompatActivity {
             resp_correta.add("Sistemas Conectados à Rede");
             resp_errada.add("Sistemas isolados");
             resp_errada.add("Sistema de bombeamento");
+
+            perguntas.add("O que acontece no processo de dopagem?");
+            curiosidades.add("Calvin Fuller desenvolveu um processo de difusão para introduzir impurezas em cristais de silício, de modo a controlar as suas propriedades elétricas, Chamado de dopagem");
+            resp_correta.add("Controle de propriedades químicas do silício");
+            resp_errada.add("Mergulha o silício em água");
+            resp_errada.add("Construção de uma barra de Silício");
+
+            perguntas.add("A energia solar representa cerca de:");
+            curiosidades.add("A energia solar no Brasil representa apenas 1,7% de toda a matriz energética, porém, o número de sistemas fotovoltaicos instalados no território brasileiro tem crescido consideravelmente, principalmente, nas regiões Sul e Sudeste do país.");
+            resp_correta.add("1,7% da matriz energética brasileira");
+            resp_errada.add("60% da matriz energética");
+            resp_errada.add("32% da matriz energética");
+
+            perguntas.add("Qual o principal incentivo de uso da energia solar no Brasil?");
+            curiosidades.add("O incentivo chamado de Meetering é possibilidade de se injetar na rede elétrica a energia produzida pelos painéis fotovoltaicos não consumida, convertê-la em créditos para a compensação posterior, quando o consumo supera a produção dos painéis.");
+            resp_correta.add("Meetering");
+            resp_errada.add("Grid-tie");
+            resp_errada.add("Feed-in tariff");
+
+            perguntas.add("Qual sistema tem como principal característica o aquecimento de água?");
+            curiosidades.add("São os sistemas mais simples, econômicos e conhecidos de aproveitar o sol, sendo utilizados em casas, hotéis e empresas para o aquecimento de água para chuveiros ou piscinas, aquecimentos de ambientes ou até em processos industriais.");
+            resp_correta.add("Sistema Solar Térmico");
+            resp_errada.add("Sistema Termo Solar");
+            resp_errada.add("Sistema Solar Fotovoltaico");
+
+            perguntas.add("Qual sistema tem como principal característica o uso de células fotovoltaicas?");
+            curiosidades.add("Os sistemas fotovoltaicos são capazes de gerar energia elétrica através das chamadas células fotovoltaicas. As células fotovoltaicas são feitas de materiais capazes de converter a radiação solar em energia elétrica, através do chamado “efeito fotovoltaico”. ");
+            resp_correta.add("Sistema Solar Fotovoltaico");
+            resp_errada.add("Sistema Termo Solar");
+            resp_errada.add("Sistema Solar Térmico");
+
+            perguntas.add("Qual sistema tem como principal característica a concentração da radiação solar?");
+            curiosidades.add("Os sistemas termo solares produzem inicialmente calor, através de um sistema de espelhos (ou concentradores) que concentram a radiação solar, e só então transformam este calor em energia elétrica.");
+            resp_correta.add("Sistema Termo Solar");
+            resp_errada.add("Sistema Solar Fotovoltaico");
+            resp_errada.add("Sistema Solar Térmico");
+
+            perguntas.add("Quais as duas principais espécies básicas de sistemas fotovoltaícos?");
+            curiosidades.add("Sistemas Isolados (Off-grid) e Sistemas Conectados à Rede (On-Grid)");
+            resp_correta.add("On-Grid e Off-Grid");
+            resp_errada.add("Off-Grid e Oron-Grid");
+            resp_errada.add("On-Grid e Oron-Grid");
+
+            perguntas.add("Para qual sistema não é necessário estar conectado a rede elétrica?");
+            curiosidades.add("Os Sistemas Isolados (Off-Grid) são utilizados em locais remotos ou onde o custo de se conectar a rede elétrica é elevado, são utilizados em casas de campo, refúgios, iluminação, telecomunicações, bombeio de água, etc.");
+            resp_correta.add("Off-Grid");
+            resp_errada.add("Oron-Grid");
+            resp_errada.add("On-Grid");
+
+            perguntas.add("Para qual sistema é necessário estar conectado a rede elétrica?");
+            curiosidades.add("Os Sistemas Conectados à rede (On-Grid), substituem ou complementam a energia elétrica convencional disponível na rede elétrica.");
+            resp_correta.add("On-Grid");
+            resp_errada.add("Off-Grid");
+            resp_errada.add("Oron-Grid");
         }
 
         else

@@ -1,5 +1,3 @@
-// DESCOBRIR UM JEITO DE COMECAR O JOGO DIRETO
-
 package com.example.apptreineeongrid;
 
 import androidx.appcompat.app.AppCompatActivity;
