@@ -4,7 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#071e50"
+    android:background="@drawable/jogar_prancheta_1_"
     tools:context=".TelaDificuldade">
+
+    <Button
+        android:id="@+id/facil"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:background="#C7522F"
+        android:text="Fácil"
+        android:textSize="20dp"
+        app:backgroundTint="#C7522F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DIFICULDADE"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/medio"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="#C7522F"
+        android:text="médio"
+        android:textSize="20dp"
+        app:backgroundTint="#C7522F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facil" />
+
+    <Button
+        android:id="@+id/dificil"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="#C7522F"
+        android:text="Difícil"
+        android:textSize="20dp"
+        app:backgroundTint="#C7522F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medio" />
+
+    <TextView
+        android:id="@+id/DIFICULDADE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DIFICULDADE"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         mViewHolder.b_jogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,TelaJogo.class);
-                intent.putExtra("iniciar", true);
+                Intent intent = new Intent(MainActivity.this,TelaDificuldade.class);
+               // intent.putExtra("iniciar", true);
                 startActivity(intent);
             }
         });
