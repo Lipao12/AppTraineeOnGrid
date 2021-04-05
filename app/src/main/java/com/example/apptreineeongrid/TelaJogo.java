@@ -36,6 +36,7 @@ public class TelaJogo extends AppCompatActivity {
     public int score;
     private static Boolean rClicado=true;
     private Typeface fonte;
+    private int perg_estacionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +66,8 @@ public class TelaJogo extends AppCompatActivity {
 
         mudarFonte();
 
-        final boolean[] jogoAcabou = {false};
-        int dificuldade = getIntent().getExtras().getChar("dificuldade");
+       // final boolean[] jogoAcabou = {false};
+        char dificuldade = getIntent().getExtras().getChar("dificuldade");
 
         System.out.println("Dificuldade: "+dificuldade);
         if(dificuldade != '\0' )
@@ -75,6 +76,7 @@ public class TelaJogo extends AppCompatActivity {
             mViewHolder.rosto_feliz.setVisibility(View.GONE);
             mViewHolder.b_continuar.setVisibility(View.GONE);
             mViewHolder.b_vcSabia.setVisibility(View.GONE);
+            perg_estacionada=0;
             score=0;
             inicializarPerguntas(dificuldade);
             for (x=0;x<perguntas.size();x++)
@@ -87,6 +89,7 @@ public class TelaJogo extends AppCompatActivity {
             }
             dificuldade = '\0';
             gerarPerguntasAleatorias();
+            imprimirQuantidadeDePergunta();
         }
 
         mViewHolder.b_continuar.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +106,13 @@ public class TelaJogo extends AppCompatActivity {
                 mViewHolder.pergunta_texto.setVisibility(View.VISIBLE);
                 mViewHolder.imagem_perguntas.setVisibility(View.VISIBLE);
 
-                if(!jogoAcabou[0])
+               // if(!jogoAcabou[0])
                     gerarPerguntasAleatorias();
-                else
-                {
-                    Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
-                    startActivity(intent);
-                }
+               // else
+               // {
+             //       Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
+               //     startActivity(intent);
+              //  }
             }
         });
 
@@ -136,10 +139,12 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
                     mViewHolder.imagem_perguntas.setVisibility(View.GONE);
 
+
+                    imprimirQuantidadeDePergunta();
                     if(mViewHolder.r1.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
-                        mViewHolder.score_texto.setText(""+score);
+                        //mViewHolder.score_texto.setText("/"+score);
                         mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
@@ -148,7 +153,7 @@ public class TelaJogo extends AppCompatActivity {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r1.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
-                        jogoAcabou[0] = true;
+                      //  jogoAcabou[0] = true;
                     }
                 }
             }
@@ -164,10 +169,11 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
                     mViewHolder.imagem_perguntas.setVisibility(View.GONE);
 
+                    imprimirQuantidadeDePergunta();
                     if(mViewHolder.r2.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
-                        mViewHolder.score_texto.setText(""+score);
+                        //mViewHolder.score_texto.setText(""+score);
                         mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
@@ -176,7 +182,7 @@ public class TelaJogo extends AppCompatActivity {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r2.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
-                        jogoAcabou[0] = true;
+                       // jogoAcabou[0] = true;
                     }
                 }
             }
@@ -191,10 +197,12 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
                     mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+
+                    imprimirQuantidadeDePergunta();
                     if(mViewHolder.r3.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
-                        mViewHolder.score_texto.setText(""+score);
+                        //mViewHolder.score_texto.setText(""+score);
                         mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
@@ -203,7 +211,7 @@ public class TelaJogo extends AppCompatActivity {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r3.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
-                        jogoAcabou[0] = true;
+                       // jogoAcabou[0] = true;
                     }
                 }
             }
@@ -250,7 +258,10 @@ public class TelaJogo extends AppCompatActivity {
 
             pergs_fazer.remove(x);
         } else if (pergs_fazer.size() == 0) {
-            finish();
+            //finish();
+            Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
+            intent.putExtra("score", score);
+            startActivity(intent);
         }
 
         mViewHolder.pergunta_texto.setText(perguntas.get(num_pergunta));
@@ -259,6 +270,12 @@ public class TelaJogo extends AppCompatActivity {
     public static void set_rClicado(boolean clicado)
     {
         rClicado=clicado;
+    }
+
+    public void imprimirQuantidadeDePergunta()
+    {
+        perg_estacionada++;
+        mViewHolder.score_texto.setText(perg_estacionada+"/"+perguntas.size());
     }
 
     public void acharRespCorreta()
@@ -286,7 +303,7 @@ public class TelaJogo extends AppCompatActivity {
         mViewHolder.r3.setTypeface(fonte);
     }
 
-    private void inicializarPerguntas(int dificuldade) // FOI COLOCADA ATE A PERGUNTA 20
+    private void inicializarPerguntas(char dificuldade) // FOI COLOCADA ATE A PERGUNTA 20
     {
         if(dificuldade == 'f')
         {
