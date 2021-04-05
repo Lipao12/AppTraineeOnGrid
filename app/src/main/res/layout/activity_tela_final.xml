@@ -4,5 +4,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pontua__o_prancheta_1_c_pia_9"
-    tools:context=".TelaFinal"/>
+    android:background="@drawable/final_novo_prancheta_1_c_pia_9"
+    tools:context=".TelaFinal" />

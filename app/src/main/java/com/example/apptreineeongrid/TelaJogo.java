@@ -50,6 +50,8 @@ public class TelaJogo extends AppCompatActivity {
         this.mViewHolder.pergunta_texto = findViewById(R.id.pergunta);
         this.mViewHolder.imagem_perguntas = findViewById(R.id.imageView);
         this.mViewHolder.score_texto = findViewById(R.id.score);
+        this.mViewHolder.rosto_feliz = findViewById(R.id.rosto_feliz);
+        this.mViewHolder.rosto_triste = findViewById(R.id.rosto_triste);
 
         /*Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(res, android.R.drawable.toast_frame,null);*/
@@ -69,6 +71,8 @@ public class TelaJogo extends AppCompatActivity {
         System.out.println("Dificuldade: "+dificuldade);
         if(dificuldade != '\0' )
         {
+            mViewHolder.rosto_triste.setVisibility(View.GONE);
+            mViewHolder.rosto_feliz.setVisibility(View.GONE);
             mViewHolder.b_continuar.setVisibility(View.GONE);
             mViewHolder.b_vcSabia.setVisibility(View.GONE);
             score=0;
@@ -92,6 +96,8 @@ public class TelaJogo extends AppCompatActivity {
                 mViewHolder.r2.setBackgroundColor(0xFFFFFFFF);
                 mViewHolder.r3.setBackgroundColor(0xFFFFFFFF);
 
+                mViewHolder.rosto_triste.setVisibility(View.GONE);
+                mViewHolder.rosto_feliz.setVisibility(View.GONE);
                 mViewHolder.b_continuar.setVisibility(View.GONE);
                 mViewHolder.b_vcSabia.setVisibility(View.GONE);
                 mViewHolder.pergunta_texto.setVisibility(View.VISIBLE);
@@ -134,10 +140,12 @@ public class TelaJogo extends AppCompatActivity {
                     {
                         score++;
                         mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
                     else
                     {
+                        mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r1.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
                         jogoAcabou[0] = true;
@@ -160,10 +168,12 @@ public class TelaJogo extends AppCompatActivity {
                     {
                         score++;
                         mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
                     else
                     {
+                        mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r2.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
                         jogoAcabou[0] = true;
@@ -185,11 +195,14 @@ public class TelaJogo extends AppCompatActivity {
                     {
                         score++;
                         mViewHolder.score_texto.setText("Score: "+score);
+                        mViewHolder.rosto_feliz.setVisibility(View.VISIBLE);
                         acharRespCorreta();
                     }
                     else
                     {
+                        mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r3.setBackgroundColor(0xFFCA1010);
+                        acharRespCorreta();
                         jogoAcabou[0] = true;
                     }
                 }
@@ -206,6 +219,8 @@ public class TelaJogo extends AppCompatActivity {
         TextView pergunta_texto;
         TextView score_texto;
         ImageView imagem_perguntas;
+        ImageView rosto_feliz;
+        ImageView rosto_triste;
     }
 
     public void gerarPerguntasAleatorias()

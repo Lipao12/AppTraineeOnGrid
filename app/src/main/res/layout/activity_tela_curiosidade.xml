@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/jogar_fundo_prancheta_1_c_pia_3"
     app:backgroundTint="@null"
-    android:background="#071e50"
     tools:context=".TelaCuriosidade">
 
     <TextView
@@ -18,20 +18,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/voltar"
-        android:layout_width="55dp"
-        android:layout_height="45dp"
-        android:background="#00161F54"
+        android:layout_width="204dp"
+        android:layout_height="153dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.977"
-        app:srcCompat="@drawable/abc_vector_test" />
+        app:layout_constraintVertical_bias="0.972"
+        app:srcCompat="@drawable/botao_v_14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/m_dio"
+    android:background="@drawable/fundo_medio"
     tools:context=".TelaJogo">
 
     <Button
@@ -13,8 +13,8 @@
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:textAllCaps="false"
         android:text="@string/R1"
+        android:textAllCaps="false"
         android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,8 +31,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:textAllCaps="false"
         android:text="@string/R2"
+        android:textAllCaps="false"
         android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,8 +46,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:textAllCaps="false"
         android:text="@string/R3"
+        android:textAllCaps="false"
         android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,7 +64,7 @@
         android:text="@string/b_continuar"
         android:textColor="#071e50"
         android:textSize="10sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,18 +81,19 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+        app:layout_constraintVertical_bias="0.074" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="408dp"
         android:layout_height="273dp"
+        android:background="#FFFFFF"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.31"
@@ -109,14 +110,17 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.493" />
 
     <Button
         android:id="@+id/vcSabia"
         android:layout_width="100dp"
         android:layout_height="64dp"
         android:text="@string/vcSabia"
+        android:visibility="gone"
         app:backgroundTint="#071e50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,5 +128,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.362" />
+
+    <ImageView
+        android:id="@+id/rosto_feliz"
+        android:layout_width="125dp"
+        android:layout_height="121dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/continuar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/acerto__14" />
+
+    <ImageView
+        android:id="@+id/rosto_triste"
+        android:layout_width="124dp"
+        android:layout_height="119dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/continuar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/erro_14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
