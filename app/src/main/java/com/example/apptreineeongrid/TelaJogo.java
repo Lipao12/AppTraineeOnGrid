@@ -8,6 +8,7 @@ import android.app.MediaRouteButton;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class TelaJogo extends AppCompatActivity {
     private int num_pergunta;
     public int score;
     private static Boolean rClicado=true;
+    private Typeface fonte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class TelaJogo extends AppCompatActivity {
         pergs_fazer = new ArrayList<>();
         botoes_acertar = new ArrayList<>();
 
+        mudarFonte();
 
         final boolean[] jogoAcabou = {false};
         int dificuldade = getIntent().getExtras().getChar("dificuldade");
@@ -257,6 +260,15 @@ public class TelaJogo extends AppCompatActivity {
         {
             mViewHolder.r3.setBackgroundColor(0xD806B50D);
         }
+    }
+
+    private void mudarFonte()
+    {
+        fonte = Typeface.createFromAsset(getAssets(),"RobotoMono-Light.ttf");
+        mViewHolder.pergunta_texto.setTypeface(fonte);
+        mViewHolder.r1.setTypeface(fonte);
+        mViewHolder.r2.setTypeface(fonte);
+        mViewHolder.r3.setTypeface(fonte);
     }
 
     private void inicializarPerguntas(int dificuldade) // FOI COLOCADA ATE A PERGUNTA 20
