@@ -12,6 +12,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -208,6 +209,31 @@ public class TelaJogo extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        _counter(30);
+    }
+
+    void _counter(int i) {
+
+        if (i >= 0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    TextView counter = (TextView)findViewById(R.id.counter);
+                    int j = i;
+                    counter.setText(Integer.toString(j));
+                    j--;
+                    _counter(j);
+
+                }
+            }, 1000);
+        } else {
+            rClicado = true;
+            acharRespCorreta();
+        }
+
     }
 
     public static class ViewHolder{
