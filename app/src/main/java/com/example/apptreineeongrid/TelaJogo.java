@@ -216,17 +216,16 @@ public class TelaJogo extends AppCompatActivity {
     }
 
     void _counter(int i) {
+        TextView counter = (TextView)findViewById(R.id.counter);
+        counter.setText(Integer.toString(i));
 
         if (i >= 0) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    TextView counter = (TextView)findViewById(R.id.counter);
                     int j = i;
-                    counter.setText(Integer.toString(j));
                     j--;
                     _counter(j);
-
                 }
             }, 1000);
         } else {
