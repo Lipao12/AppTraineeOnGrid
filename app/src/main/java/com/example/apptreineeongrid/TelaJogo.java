@@ -219,7 +219,7 @@ public class TelaJogo extends AppCompatActivity {
         TextView counter = (TextView)findViewById(R.id.counter);
         counter.setText(Integer.toString(i));
 
-        if (i >= 0) {
+        if (i > 0) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
