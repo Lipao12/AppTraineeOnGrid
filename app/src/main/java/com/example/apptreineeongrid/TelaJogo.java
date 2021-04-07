@@ -19,6 +19,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -42,6 +45,8 @@ public class TelaJogo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_jogo);
+
+        
 
         this.mViewHolder.r1 = findViewById(R.id.Opc1);
         this.mViewHolder.r2 = findViewById(R.id.Opc2);
