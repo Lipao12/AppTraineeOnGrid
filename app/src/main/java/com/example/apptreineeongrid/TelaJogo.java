@@ -76,8 +76,10 @@ public class TelaJogo extends AppCompatActivity {
             mViewHolder.rosto_feliz.setVisibility(View.GONE);
             mViewHolder.b_continuar.setVisibility(View.GONE);
             mViewHolder.b_vcSabia.setVisibility(View.GONE);
-            perg_estacionada=0;
+
+            perg_estacionada=1;
             score=0;
+
             inicializarPerguntas(dificuldade);
             for (x=0;x<perguntas.size();x++)
             {
@@ -105,7 +107,7 @@ public class TelaJogo extends AppCompatActivity {
                 mViewHolder.b_vcSabia.setVisibility(View.GONE);
                 mViewHolder.pergunta_texto.setVisibility(View.VISIBLE);
                 mViewHolder.imagem_perguntas.setVisibility(View.VISIBLE);
-
+                imprimirQuantidadeDePergunta();
                // if(!jogoAcabou[0])
                     gerarPerguntasAleatorias();
                // else
@@ -139,8 +141,6 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
                     mViewHolder.imagem_perguntas.setVisibility(View.GONE);
 
-
-                    imprimirQuantidadeDePergunta();
                     if(mViewHolder.r1.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
@@ -169,7 +169,6 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
                     mViewHolder.imagem_perguntas.setVisibility(View.GONE);
 
-                    imprimirQuantidadeDePergunta();
                     if(mViewHolder.r2.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
@@ -198,7 +197,6 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
                     mViewHolder.imagem_perguntas.setVisibility(View.GONE);
 
-                    imprimirQuantidadeDePergunta();
                     if(mViewHolder.r3.getText() == resp_correta.get(num_pergunta))
                     {
                         score++;
@@ -258,7 +256,6 @@ public class TelaJogo extends AppCompatActivity {
 
             pergs_fazer.remove(x);
         } else if (pergs_fazer.size() == 0) {
-            //finish();
             Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
             intent.putExtra("score", score);
             startActivity(intent);
@@ -274,8 +271,8 @@ public class TelaJogo extends AppCompatActivity {
 
     public void imprimirQuantidadeDePergunta()
     {
-        perg_estacionada++;
         mViewHolder.score_texto.setText(perg_estacionada+"/"+perguntas.size());
+        perg_estacionada++;
     }
 
     public void acharRespCorreta()

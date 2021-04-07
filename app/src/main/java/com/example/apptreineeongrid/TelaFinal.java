@@ -26,10 +26,14 @@ public class TelaFinal extends AppCompatActivity {
         mViewHolder.b_tInicial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TelaFinal.this, MainActivity.class);
+                Intent intent = new Intent(TelaFinal.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("finishApplication", true);
                 startActivity(intent);
             }
         });
+
+
 
     }
 
