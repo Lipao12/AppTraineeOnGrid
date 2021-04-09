@@ -18,16 +18,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        this.mViewHolder.b_jogo = findViewById(R.id.botao_iniciar_game);
+        this.mViewHolder.b_jogo = findViewById(R.id.TIbotao_iniciar_game);
+        this.mViewHolder.b_pontuacao = findViewById(R.id.TIbotao_pontuacao);
 
         fonte = Typeface.createFromAsset(getAssets(),"Press Start K.ttf");
         mViewHolder.b_jogo.setTypeface(fonte);
+        mViewHolder.b_pontuacao.setTypeface(fonte);
 
         mViewHolder.b_jogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,TelaDificuldade.class);
-               // intent.putExtra("iniciar", true);
+                startActivity(intent);
+            }
+        });
+
+        mViewHolder.b_pontuacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,TelaPontuacao.class);
                 startActivity(intent);
             }
         });
@@ -36,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static class ViewHolder{
         Button b_jogo;
+        Button b_pontuacao;
     }
 
 }

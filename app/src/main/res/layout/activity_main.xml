@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/botao_iniciar_game"
+        android:id="@+id/TIbotao_iniciar_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#C7522F"
@@ -22,4 +22,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/TIbotao_pontuacao"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:background="#C7522F"
+        android:text="@string/pontuacao"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:backgroundTint="#C7522F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TIbotao_iniciar_game" />
 </androidx.constraintlayout.widget.ConstraintLayout>

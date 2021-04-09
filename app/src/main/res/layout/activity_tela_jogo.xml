@@ -7,8 +7,20 @@
     android:background="@drawable/fundo_medio"
     tools:context=".TelaJogo">
 
+    <ImageView
+        android:id="@+id/TJvoltar"
+        android:layout_width="45dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/icons8_casa_64" />
+
     <Button
-        android:id="@+id/Opc1"
+        android:id="@+id/TJOpc1"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
@@ -25,7 +37,7 @@
         app:layout_constraintVertical_bias="0.663" />
 
     <Button
-        android:id="@+id/Opc2"
+        android:id="@+id/TJOpc2"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
@@ -37,10 +49,10 @@
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Opc1" />
+        app:layout_constraintTop_toBottomOf="@+id/TJOpc1" />
 
     <Button
-        android:id="@+id/Opc3"
+        android:id="@+id/TJOpc3"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
@@ -54,11 +66,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Opc2"
+        app:layout_constraintTop_toBottomOf="@+id/TJOpc2"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/continuar"
+        android:id="@+id/TJcontinuar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:text="@string/b_continuar"
@@ -74,10 +86,10 @@
         app:layout_constraintVertical_bias="0.519" />
 
     <TextView
-        android:id="@+id/score"
+        android:id="@+id/TJqnt_perguntas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0/0"
+        android:text="@string/qnt_pergunta"
         android:textColor="#071e50"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,38 +100,38 @@
         app:layout_constraintVertical_bias="0.085" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="408dp"
-        android:layout_height="273dp"
+        android:id="@+id/TJimageView"
+        android:layout_width="0dp"
+        android:layout_height="275dp"
         android:background="#FFFFFF"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31"
+        app:layout_constraintVertical_bias="0.307"
         app:srcCompat="@drawable/blank" />
 
     <TextView
-        android:id="@+id/pergunta"
+        android:id="@+id/TJpergunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/pergunta"
         android:textAlignment="center"
         android:textColor="#071e50"
         android:textSize="20dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintBottom_toBottomOf="@+id/TJimageView"
+        app:layout_constraintEnd_toEndOf="@+id/TJimageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/TJimageView"
+        app:layout_constraintVertical_bias="0.504" />
 
     <Button
-        android:id="@+id/vcSabia"
+        android:id="@+id/TJvcSabia"
         android:layout_width="100dp"
         android:layout_height="64dp"
         android:text="@string/vcSabia"
@@ -133,32 +145,25 @@
         app:layout_constraintVertical_bias="0.362" />
 
     <ImageView
-        android:id="@+id/rosto_feliz"
+        android:id="@+id/TJrosto_feliz"
         android:layout_width="125dp"
         android:layout_height="121dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/continuar"
+        app:layout_constraintBottom_toTopOf="@+id/TJcontinuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/acerto__14" />
 
     <ImageView
-        android:id="@+id/rosto_triste"
+        android:id="@+id/TJrosto_triste"
         android:layout_width="124dp"
         android:layout_height="119dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/continuar"
+        app:layout_constraintBottom_toTopOf="@+id/TJcontinuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/erro_14" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,13 @@
     tools:context=".TelaCuriosidade">
 
     <TextView
-        android:id="@+id/curiosidade_texto"
+        android:id="@+id/TCcuriosidade_texto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="#FFFFFF"
-        android:text="@string/textview"
+        android:text="text"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/voltarTD"
+        android:id="@+id/TDvoltar"
         android:layout_width="204dp"
         android:layout_height="153dp"
         app:layout_constraintBottom_toBottomOf="parent"

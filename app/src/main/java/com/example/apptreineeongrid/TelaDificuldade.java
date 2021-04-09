@@ -2,13 +2,11 @@ package com.example.apptreineeongrid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,11 +20,11 @@ public class TelaDificuldade extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_dificuldade);
 
-        mViewHolder.textoDificuldade = findViewById(R.id.DIFICULDADE);
-        mViewHolder.b_facil = findViewById(R.id.facil);
-        mViewHolder.b_medio = findViewById(R.id.medio);
-        mViewHolder.b_dificil = findViewById(R.id.dificil);
-        mViewHolder.b_voltar = findViewById(R.id.voltarTD);
+        mViewHolder.textoDificuldade = findViewById(R.id.TDDIFICULDADE);
+        mViewHolder.b_facil = findViewById(R.id.TDfacil);
+        mViewHolder.b_medio = findViewById(R.id.TDmedio);
+        mViewHolder.b_dificil = findViewById(R.id.TDdificil);
+        mViewHolder.b_voltar = findViewById(R.id.TDvoltar);
 
         fonte = Typeface.createFromAsset(getAssets(),"Press Start K.ttf"); //RobotoMono-Light.ttf  //  Joystix.ttf
         mViewHolder.textoDificuldade.setTypeface(fonte);

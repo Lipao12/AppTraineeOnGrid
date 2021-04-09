@@ -2,16 +2,13 @@ package com.example.apptreineeongrid;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
-import android.app.MediaRouteButton;
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,22 +34,24 @@ public class TelaJogo extends AppCompatActivity {
     private static Boolean rClicado=true;
     private Typeface fonte;
     private int perg_estacionada;
+    private char mem_dificuldade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_jogo);
 
-        this.mViewHolder.r1 = findViewById(R.id.Opc1);
-        this.mViewHolder.r2 = findViewById(R.id.Opc2);
-        this.mViewHolder.r3 = findViewById(R.id.Opc3);
-        this.mViewHolder.b_continuar = findViewById(R.id.continuar);
-        this.mViewHolder.b_vcSabia = findViewById(R.id.vcSabia);
-        this.mViewHolder.pergunta_texto = findViewById(R.id.pergunta);
-        this.mViewHolder.imagem_perguntas = findViewById(R.id.imageView);
-        this.mViewHolder.score_texto = findViewById(R.id.score);
-        this.mViewHolder.rosto_feliz = findViewById(R.id.rosto_feliz);
-        this.mViewHolder.rosto_triste = findViewById(R.id.rosto_triste);
+        this.mViewHolder.r1 = findViewById(R.id.TJOpc1);
+        this.mViewHolder.r2 = findViewById(R.id.TJOpc2);
+        this.mViewHolder.r3 = findViewById(R.id.TJOpc3);
+        this.mViewHolder.b_voltarTinicial = findViewById(R.id.TJvoltar);
+        this.mViewHolder.b_continuar = findViewById(R.id.TJcontinuar);
+        this.mViewHolder.b_vcSabia = findViewById(R.id.TJvcSabia);
+        this.mViewHolder.pergunta_texto = findViewById(R.id.TJpergunta);
+        this.mViewHolder.imagem_perguntas = findViewById(R.id.TJimageView);
+        this.mViewHolder.score_texto = findViewById(R.id.TJqnt_perguntas);
+        this.mViewHolder.rosto_feliz = findViewById(R.id.TJrosto_feliz);
+        this.mViewHolder.rosto_triste = findViewById(R.id.TJrosto_triste);
 
         /*Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(res, android.R.drawable.toast_frame,null);*/
@@ -72,6 +71,7 @@ public class TelaJogo extends AppCompatActivity {
         System.out.println("Dificuldade: "+dificuldade);
         if(dificuldade != '\0' )
         {
+            mem_dificuldade = dificuldade;
             mViewHolder.rosto_triste.setVisibility(View.GONE);
             mViewHolder.rosto_feliz.setVisibility(View.GONE);
             mViewHolder.b_continuar.setVisibility(View.GONE);
@@ -123,6 +123,16 @@ public class TelaJogo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TelaJogo.this,TelaCuriosidade.class);
                 intent.putExtra("curiosidade",curiosidades.get(num_pergunta));
+                startActivity(intent);
+            }
+        });
+
+        mViewHolder.b_voltarTinicial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TelaJogo.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("finishApplication", true);
                 startActivity(intent);
             }
         });
@@ -220,6 +230,7 @@ public class TelaJogo extends AppCompatActivity {
         Button r1;
         Button r2;
         Button r3;
+        ImageView b_voltarTinicial;
         Button b_continuar;
         Button b_vcSabia;
         TextView pergunta_texto;
@@ -257,6 +268,7 @@ public class TelaJogo extends AppCompatActivity {
             pergs_fazer.remove(x);
         } else if (pergs_fazer.size() == 0) {
             Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
+            intent.putExtra("dificuldade", mem_dificuldade);
             intent.putExtra("score", score);
             startActivity(intent);
         }

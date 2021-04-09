@@ -8,56 +8,53 @@
     tools:context=".TelaDificuldade">
 
     <Button
-        android:id="@+id/facil"
+        android:id="@+id/TDfacil"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
-        android:background="#C7522F"
-        android:text="Fácil"
+        android:text="@string/facil"
         android:textSize="20dp"
         app:backgroundTint="#C7522F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DIFICULDADE"
+        app:layout_constraintTop_toBottomOf="@+id/TDDIFICULDADE"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/medio"
+        android:id="@+id/TDmedio"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="#C7522F"
-        android:text="médio"
+        android:text="@string/medio"
         android:textSize="20dp"
         app:backgroundTint="#C7522F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/facil" />
+        app:layout_constraintTop_toBottomOf="@+id/TDfacil" />
 
     <Button
-        android:id="@+id/dificil"
+        android:id="@+id/TDdificil"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="#C7522F"
-        android:text="Difícil"
+        android:text="@string/dificil"
         android:textSize="20dp"
         app:backgroundTint="#C7522F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/medio" />
+        app:layout_constraintTop_toBottomOf="@+id/TDmedio" />
 
     <TextView
-        android:id="@+id/DIFICULDADE"
+        android:id="@+id/TDDIFICULDADE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DIFICULDADE"
@@ -70,7 +67,7 @@
         app:layout_constraintVertical_bias="0.32" />
 
     <ImageView
-        android:id="@+id/voltarTD"
+        android:id="@+id/TDvoltar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
