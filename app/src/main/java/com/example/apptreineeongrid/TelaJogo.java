@@ -2,25 +2,23 @@ package com.example.apptreineeongrid;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 
-import android.app.MediaRouteButton;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.MongoException;
+import com.mongodb.client.MongoDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -40,13 +38,12 @@ public class TelaJogo extends AppCompatActivity {
     public int score;
     private static Boolean rClicado=true;
     private Typeface fonte;
+    boolean counter_continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_jogo);
-
-        
 
         this.mViewHolder.r1 = findViewById(R.id.Opc1);
         this.mViewHolder.r2 = findViewById(R.id.Opc2);
@@ -215,22 +212,21 @@ public class TelaJogo extends AppCompatActivity {
             }
         });
 
-
-
-        _counter(30);
+        this.counter_continue = true;
+        _counter(30, this);
     }
 
-    void _counter(int i) {
+    void _counter(int i, TelaJogo telaJogo) {
         TextView counter = (TextView)findViewById(R.id.counter);
         counter.setText(Integer.toString(i));
 
-        if (i > 0) {
+        if (i > 0 && telaJogo.counter_continue) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     int j = i;
                     j--;
-                    _counter(j);
+                    _counter(j, telaJogo);
                 }
             }, 1000);
         } else {
@@ -320,49 +316,51 @@ public class TelaJogo extends AppCompatActivity {
     {
         if(dificuldade == 'f')
         {
-            perguntas.add("Qual é a camada mais externa do Sol?");
+            /*perguntas.add("Qual é a camada mais externa do Sol?");
             curiosidades.add("A estrutura do Sol é composta pelas principais regiões: núcleo, zona radiativa, zona convectiva, fotosfera, cromosfera e coroa.");
             resp_correta.add("Coroa");
             resp_errada.add("Fotosfera");
-            resp_errada.add("Núcleo");
+            resp_errada.add("Núcleo");*/
 
-            perguntas.add("Qual elemento químico mais abundante no Sol?");
+           /* perguntas.add("Qual elemento químico mais abundante no Sol?");
             curiosidades.add("O Sol é constituído em sua maioria de Hidrogênio (91,2%), mas também possui Hélio (8,7%), Oxigênio(0,078%) e Carbono(0,043%)");
             resp_correta.add("H");
             resp_errada.add("Fe");
-            resp_errada.add("He");
+            resp_errada.add("He");*/
 
-            perguntas.add("Qual região é responsável pela maior parte da radiação visível emitida pelo Sol?");
+            /*perguntas.add("Qual região é responsável pela maior parte da radiação visível emitida pelo Sol?");
             curiosidades.add("A fotosfera, primeira região da atmosfera solar, com 330 km de espessura e temperatura próxima de 5.800 K.");
             resp_correta.add("Fotosfera");
             resp_errada.add("Núcleo");
-            resp_errada.add("Cromosfera");
+            resp_errada.add("Cromosfera");*/
 
-            perguntas.add("Qual a potência total disponibilizada pelo Sol à Terra?");
+            /*perguntas.add("Qual a potência total disponibilizada pelo Sol à Terra?");
             curiosidades.add("A densidade média anual do fluxo energético proveniente da radiação solar (irradiância solar) recebe o nome de “constante solar” e corresponde ao valor de 1.367 W/m2 . Considerando que o raio médio da Terra é 6.371 km, conclui-se que a potência total disponibilizada pelo Sol à Terra é de aproximadamente 174 mil TW (terawatts)");
             resp_correta.add("174 mil Terawatts");
             resp_errada.add("45 Kilowatts");
-            resp_errada.add("152 mil Megawatts");
+            resp_errada.add("152 mil Megawatts");*/
 
-            perguntas.add("Parte da potência total disponibilizada pelo Sol à Terra é absorvida ou refletida pela atmosfera. Quantos % dessa potência chegam à superfície terrestre?");
+            /*perguntas.add("Parte da potência total disponibilizada pelo Sol à Terra é absorvida ou refletida pela atmosfera. Quantos % dessa potência chegam à superfície terrestre?");
             curiosidades.add("Cerca de 54 % da irradiância solar que incide no topo da atmosfera, é refletida (7 %) e absorvida (47 %) pela superfície terrestre (os 46 % restantes são absorvidos ou refletidos diretamente pela atmosfera). Ou seja, da potência total disponibilizada pelo Sol à Terra, cerca de 94 mil TW chegam efetivamente à superfície terrestre.");
             resp_correta.add("54%");
             resp_errada.add("76%");
-            resp_errada.add("28%");
+            resp_errada.add("28%");*/
 
-            perguntas.add("Qual foi a primeira Usina Fotovoltaica implantada no Brasil?");
+            /*perguntas.add("Qual foi a primeira Usina Fotovoltaica implantada no Brasil?");
             curiosidades.add("A primeira UFV implantada no Brasil foi um empreendimento privado, da empresa MPX, localizado no município de Tauá-CE, a cerca de 360 km de Fortaleza. A UFV Tauá entrou em operação em julho de 2011 e tem potência instalada de 1,0 MWp, em 4.680 módulos de p-Si de 215Wp, conta com 9 inversores de 100kWp e injeta a energia na rede de 13,8 kV da Coelce (Companhia Energética do Ceará).");
             resp_correta.add("Usina solar de Tauá");
             resp_errada.add("Complexo solar Lapa");
-            resp_errada.add("Usina solar São Gonçalo");
+            resp_errada.add("Usina solar São Gonçalo");*/
 
-            perguntas.add("Quando foi observado pela primeira vez o Efeito fotovoltaico?");
+            /*perguntas.add("Quando foi observado pela primeira vez o Efeito fotovoltaico?");
             curiosidades.add("O efeito fotovoltaico foi observado pela primeira vez em 1839 por Edmond Becquerel que verificou que placas metálicas, de platina ou prata, mergulhadas num eletrólito, produziam uma pequena diferença de potencial quando expostas à luz.");
             resp_correta.add("1839");
             resp_errada.add("1996");
-            resp_errada.add("1742");
+            resp_errada.add("1742");*/
 
-            perguntas.add("Quando ocorreu a primeira construção da célula solar?");
+            // Continuar daqui
+
+            /*perguntas.add("Quando ocorreu a primeira construção da célula solar?");
             curiosidades.add("A história da primeira célula solar começou em Março de 1953 quando Calvin Fuller, um químico dos Bell Laboratories (Bell Labs), em Murray Hill, New Jersey, nos EUA, desenvolveu um processo de difusão para introduzir impurezas em cristais de silício, de modo a controlar as suas propriedades eléctricas.");
             resp_correta.add("1953");
             resp_errada.add("1998");
@@ -426,13 +424,13 @@ public class TelaJogo extends AppCompatActivity {
             curiosidades.add("Embora os equipamentos solares exijam um investimento inicial mais avultado, esse investimento é recuperado, graças ao dinheiro economizado nas contas de eletricidade, água e gás.");
             resp_correta.add("Os investimentos de instalação é recuperado com o passar do tempo");
             resp_errada.add("Se não houver sol, não haverá produção de energia");
-            resp_errada.add("Necessidade de estar conectado à rede ou possuir armazenamento durante a noite");
+            resp_errada.add("Necessidade de estar conectado à rede ou possuir armazenamento durante a noite");*/
 
         }
 
         else if(dificuldade == 'm')
         {
-            perguntas.add("Qual o elemento mais utilizado na fabricação de células fotovoltaicas?");
+            /*perguntas.add("Qual o elemento mais utilizado na fabricação de células fotovoltaicas?");
             curiosidades.add("Os átomos de Si são tetravalentes, ou seja, caracterizam-se por possuírem 4 elétrons de valência que formam ligações covalentes com os átomos vizinhos, resultando em 8 elétrons compartilhados por cada átomo, constituindo uma rede cristalina.");
             resp_correta.add("Silício");
             resp_errada.add("Arsênio");
@@ -530,12 +528,12 @@ public class TelaJogo extends AppCompatActivity {
             curiosidades.add("Os Sistemas Conectados à rede (On-Grid), substituem ou complementam a energia elétrica convencional disponível na rede elétrica.");
             resp_correta.add("On-Grid");
             resp_errada.add("Off-Grid");
-            resp_errada.add("Oron-Grid");
+            resp_errada.add("Oron-Grid");*/
         }
 
         else
         {
-            perguntas.add("Qual destes fatores é diretamente proporcional à corrente elétrica produzida no módulo fotovoltaico?");
+            /*perguntas.add("Qual destes fatores é diretamente proporcional à corrente elétrica produzida no módulo fotovoltaico?");
             curiosidades.add("A corrente elétrica gerada por uma célula fotovoltaica aumenta linearmente com o aumento da irradiância solar incidente, enquanto que a tensão de circuito aberto (Voc) aumenta de forma logarítmica.");
             resp_correta.add("Irradiância  Solar");
             resp_errada.add("Resistência do módulo");
@@ -575,7 +573,7 @@ public class TelaJogo extends AppCompatActivity {
             curiosidades.add("As células Chumbo-Ácido são a tecnologia de armazenamento de energia de menor custo por Wh atualmente disponível no mercado para aplicação em sistemas fotovoltaicos.");
             resp_correta.add("Chumbo-Ácido");
             resp_errada.add("Níquel Cádmio");
-            resp_errada.add("Lítio-íon");
+            resp_errada.add("Lítio-íon");*/
         }
     }
 

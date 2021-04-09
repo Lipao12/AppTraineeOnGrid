@@ -6,9 +6,9 @@ import com.example.apptreineeongrid.TextHolder;
 public class Question implements TextHolder {
     private String text;
     private Answer answer;
-    private int difficulty;
+    private char difficulty;
 
-    Question(String text, int difficulty) {
+    Question(String text, char difficulty) {
         this.text = text;
         this.difficulty = difficulty;
     }
@@ -25,7 +25,7 @@ public class Question implements TextHolder {
         this.answer = answer;
     }
 
-    public void setDifficulty(int difficulty) {
+    public void setDifficulty(char difficulty) {
         this.difficulty = difficulty;
     }
 }
