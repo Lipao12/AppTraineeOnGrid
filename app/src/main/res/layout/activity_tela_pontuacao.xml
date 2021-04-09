@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jogar_fundo_prancheta_1_c_pia_3"
+    android:background="@drawable/niveis2_1_prancheta_1_c_pia_7"
     tools:context=".TelaPontuacao">
 
     <TextView
@@ -12,22 +12,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        android:textSize="32dp"
         android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.323" />
 
     <TextView
         android:id="@+id/TPscoreMedio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         android:text="0"
-        android:textSize="32dp"
         android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TPscoreFacil" />
 
@@ -35,11 +38,12 @@
         android:id="@+id/TPscoreDificil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         android:text="0"
-        android:textSize="32dp"
         android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TPscoreMedio" />
 
@@ -47,6 +51,7 @@
         android:id="@+id/TPbapagar"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:background="@android:drawable/toast_frame"
         android:text="Button"
         app:backgroundTint="#C7522F"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.903" />
 
     <ImageButton
         android:id="@+id/TPbvoltar"
@@ -69,5 +74,12 @@
         app:layout_constraintVertical_bias="0.885"
         app:srcCompat="@drawable/abc_vector_test"
         tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="400dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
