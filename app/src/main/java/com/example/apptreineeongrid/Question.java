@@ -1,31 +1,47 @@
 package com.example.apptreineeongrid;
 
-import com.example.apptreineeongrid.Answer;
-import com.example.apptreineeongrid.TextHolder;
-
-public class Question implements TextHolder {
+public class Question {
     private String text;
-    private Answer answer;
+    private String answer;
+    private String incorrect1;
+    private String incorrect2;
+    private String curiosity;
     private char difficulty;
 
-    Question(String text, char difficulty) {
-        this.text = text;
+    Question(String text, String answer, String incorrect1, String incorrect2, String curiosity, char difficulty) {
+        this.text       = text;
+        this.answer     = answer;
+        this.incorrect1 = incorrect1;
+        this.incorrect2 = incorrect2;
+        this.curiosity  = curiosity;
         this.difficulty = difficulty;
     }
 
     public String getText() {
-        return this.text;
+        return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
+    public String getCorrect() {
+        return answer;
     }
 
-    public void setDifficulty(char difficulty) {
-        this.difficulty = difficulty;
+    public String getIncorrect1() {
+        return incorrect1;
+    }
+
+    public String getIncorrect2() {
+        return incorrect2;
+    }
+
+    public String getCuriosity() {
+        return curiosity;
+    }
+
+    public char getDifficulty() {
+        return difficulty;
     }
 }
