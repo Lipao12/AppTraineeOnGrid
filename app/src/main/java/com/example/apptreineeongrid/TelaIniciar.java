@@ -34,7 +34,7 @@ public class TelaIniciar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(TelaIniciar.this, TelaDificuldade.class); // mudar tela dificuldade para alguma tela de pontuacao e cria-la
+                Intent intent = new Intent(TelaIniciar.this, TelaPontucao.class);
                 startActivity(intent);
             }
         });
