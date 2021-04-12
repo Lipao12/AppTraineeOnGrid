@@ -1,11 +1,14 @@
 package com.example.apptreineeongrid;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Function;
 
 public class TelaQuestion extends AppCompatActivity {
     boolean counter_continue;
@@ -99,8 +104,8 @@ public class TelaQuestion extends AppCompatActivity {
         };
 
         Runnable enableCuriosityAndContinue = () -> {
-            this.t_question_text.setVisibility(View.GONE);
-            this.i_image_view.setVisibility(View.GONE);
+            this.t_question_text.setVisibility(View.INVISIBLE);
+            this.i_image_view.setVisibility(View.INVISIBLE);
             this.b_curiosity.setVisibility(View.VISIBLE);
             this.b_curiosity.setEnabled(true);
             this.b_continue.setVisibility(View.VISIBLE);
@@ -114,82 +119,83 @@ public class TelaQuestion extends AppCompatActivity {
             this.counter_continue = false;
         };
 
+        ArrayList<Pair<Button, Integer>> arr = new ArrayList<>();
+
+        Runnable failFunc = () -> {
+            disableOptions.run();
+            enableCuriosityAndContinue.run();
+            incorrectOptionCallback.run();
+            this.setOptsColors(arr);
+        };
+
+        Runnable successFunc = () -> {
+            disableOptions.run();
+            enableCuriosityAndContinue.run();
+            correctOptionCallback.run();
+            this.setOptsColors(arr);
+        };
+
+
+
         switch(new Random(System.currentTimeMillis()).nextInt(3)) {
             case 0: {
+                arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
                 this.b_r1.setText(this.question.getCorrect());
                 this.b_r2.setText(this.question.getIncorrect1());
                 this.b_r3.setText(this.question.getIncorrect2());
                 this.b_r1.setOnClickListener(v -> {
-                    this.b_r1.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    correctOptionCallback.run();
+                    successFunc.run();
                 });
                 this.b_r2.setOnClickListener(v -> {
-                    this.b_r2.setBackgroundColor(0xFFCA1010);
-                    this.b_r1.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    incorrectOptionCallback.run();
+                    arr.add(new Pair<Button, Integer>(this.b_r2, 0xFFCA1010));
+                    arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
+                    failFunc.run();
                 });
                 this.b_r3.setOnClickListener(v -> {
-                    this.b_r3.setBackgroundColor(0xFFCA1010);
-                    this.b_r1.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    incorrectOptionCallback.run();
+                    arr.add(new Pair<Button, Integer>(this.b_r3, 0xFFCA1010));
+                    arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
+                    failFunc.run();
                 });
                 break;
             }
             case 1: {
+                arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
                 this.b_r2.setText(this.question.getCorrect());
                 this.b_r1.setText(this.question.getIncorrect1());
                 this.b_r3.setText(this.question.getIncorrect2());
                 this.b_r2.setOnClickListener(v -> {
-                    this.b_r2.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    correctOptionCallback.run();
+                    successFunc.run();
                 });
                 this.b_r1.setOnClickListener(v -> {
-                    this.b_r1.setBackgroundColor(0xFFCA1010);
-                    this.b_r2.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    incorrectOptionCallback.run();
+                    arr.add(new Pair<Button, Integer>(this.b_r1, 0xFFCA1010));
+                    arr.add(new Pair<Button, Integer>(this.b_r2, 0xD806B50D));
+                    failFunc.run();
                 });
                 this.b_r3.setOnClickListener(v -> {
-                    this.b_r3.setBackgroundColor(0xFFCA1010);
-                    this.b_r2.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    incorrectOptionCallback.run();
+                    arr.add(new Pair<Button, Integer>(this.b_r3, 0xFFCA1010));
+                    arr.add(new Pair<Button, Integer>(this.b_r2, 0xD806B50D));
+                    failFunc.run();
                 });
                 break;
             }
             case 2: {
+                arr.add(new Pair<Button, Integer>(this.b_r3, 0xD806B50D));
                 this.b_r3.setText(this.question.getCorrect());
                 this.b_r2.setText(this.question.getIncorrect1());
                 this.b_r1.setText(this.question.getIncorrect2());
                 this.b_r3.setOnClickListener(v -> {
                     this.b_r3.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    correctOptionCallback.run();
+                    successFunc.run();
                 });
                 this.b_r2.setOnClickListener(v -> {
-                    this.b_r2.setBackgroundColor(0xFFCA1010);
-                    this.b_r3.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    incorrectOptionCallback.run();
+                    arr.add(new Pair<Button, Integer>(this.b_r2, 0xFFCA1010));
+                    arr.add(new Pair<Button, Integer>(this.b_r3, 0xD806B50D));
+                    failFunc.run();
                 });
                 this.b_r1.setOnClickListener(v -> {
-                    this.b_r1.setBackgroundColor(0xFFCA1010);
-                    this.b_r3.setBackgroundColor(0xD806B50D);
-                    disableOptions.run();
-                    enableCuriosityAndContinue.run();
-                    incorrectOptionCallback.run();
+                    arr.add(new Pair<Button, Integer>(this.b_r1, 0xFFCA1010));
+                    arr.add(new Pair<Button, Integer>(this.b_r3, 0xD806B50D));
+                    failFunc.run();
                 });
                 break;
             }
@@ -211,10 +217,12 @@ public class TelaQuestion extends AppCompatActivity {
         this.t_question_text.setText(this.question.getText());
         this.t_score_text.setText(Integer.toString(getIntent().getExtras().getInt("score")));
 
-        //this.returnIntent.putExtra("result",result);
-        //setResult(Activity.RESULT_OK, returnIntent);
-        //finish();
-        _counter(30, incorrectOptionCallback);
+        _counter(30, failFunc);
+    }
+
+    private void setOptsColors(ArrayList<Pair<Button, Integer>> arr) {
+        for(int i = 0; i < arr.size(); i++)
+            arr.get(i).first.setBackgroundColor(arr.get(i).second);
     }
 
     private void _counter(int i, Runnable callback) {
@@ -234,10 +242,10 @@ public class TelaQuestion extends AppCompatActivity {
     }
 
     private void setInvisibleAndDisable() {
-        this.i_happy_face.setVisibility(View.GONE);
-        this.i_sad_face.setVisibility(View.GONE);
-        this.b_continue.setVisibility(View.GONE);
-        this.b_curiosity.setVisibility(View.GONE);
+        this.i_happy_face.setVisibility(View.INVISIBLE);
+        this.i_sad_face.setVisibility(View.INVISIBLE);
+        this.b_continue.setVisibility(View.INVISIBLE);
+        this.b_curiosity.setVisibility(View.INVISIBLE);
 
         this.i_happy_face.setEnabled(false);
         this.i_sad_face.setEnabled(false);
@@ -252,8 +260,35 @@ public class TelaQuestion extends AppCompatActivity {
     public void bail(String message) {
         Log.v("Erro LoadingScreen", message);
         Toast.makeText(getApplicationContext(), String.format("Application failure: %s", message), Toast.LENGTH_SHORT).show();
-        //Intent home = new Intent(TelaQuestion.this, MainActivity.class);
-        //home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //startActivity(home);
+        Intent home = new Intent(TelaQuestion.this, MainActivity.class);
+        home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(home);
     }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Voce ira para a tela inicial, tem certeza?");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent home = new Intent(TelaQuestion.this, MainActivity.class);
+                        home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(home);
+                        dialog.cancel();
+                    }
+                });
+        builder1.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
+    }
+
 }
