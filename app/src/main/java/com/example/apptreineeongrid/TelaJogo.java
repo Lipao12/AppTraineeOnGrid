@@ -47,7 +47,6 @@ public class TelaJogo extends AppCompatActivity {
     private static Boolean rClicado=true;
     private Typeface fonte;
     boolean counter_continue;
-    final boolean[] jogoAcabou = {false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,13 +97,7 @@ public class TelaJogo extends AppCompatActivity {
                 mViewHolder.pergunta_texto.setVisibility(View.VISIBLE);
                 mViewHolder.imagem_perguntas.setVisibility(View.VISIBLE);
 
-                if(!jogoAcabou[0])
-                    gerarPerguntasAleatorias();
-                else
-                {
-                    Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
-                    startActivity(intent);
-                }
+                gerarPerguntasAleatorias();
             }
         });
 
@@ -129,7 +122,7 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
-                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.INVISIBLE);
 
                     if(mViewHolder.r1.getText() == pergunta.getCorrect())
                     {
@@ -143,7 +136,6 @@ public class TelaJogo extends AppCompatActivity {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r1.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
-                        jogoAcabou[0] = true;
                     }
                 }
             }
@@ -157,7 +149,7 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
-                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.INVISIBLE);
 
                     if(mViewHolder.r2.getText() == pergunta.getCorrect())
                     {
@@ -171,7 +163,6 @@ public class TelaJogo extends AppCompatActivity {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r2.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
-                        jogoAcabou[0] = true;
                     }
                 }
             }
@@ -185,7 +176,7 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
-                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.INVISIBLE);
                     if(mViewHolder.r3.getText() == pergunta.getCorrect())
                     {
                         score++;
@@ -198,7 +189,6 @@ public class TelaJogo extends AppCompatActivity {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
                         mViewHolder.r3.setBackgroundColor(0xFFCA1010);
                         acharRespCorreta();
-                        jogoAcabou[0] = true;
                     }
                 }
             }
@@ -221,7 +211,6 @@ public class TelaJogo extends AppCompatActivity {
         } else {
             rClicado = true;
             acharRespCorreta();
-            jogoAcabou[0] = true;
         }
 
     }
@@ -272,7 +261,7 @@ public class TelaJogo extends AppCompatActivity {
         mViewHolder.pergunta_texto.setText(pergunta.getText());
 
         this.counter_continue = true;
-        _counter(30);
+        _counter(15);
     }
 
     public static void set_rClicado(boolean clicado)
@@ -306,7 +295,7 @@ public class TelaJogo extends AppCompatActivity {
         mViewHolder.r3.setTypeface(fonte);
     }
 
-    private void inicializarPerguntas(int dificuldade) // FOI COLOCADA ATE A PERGUNTA 20
+    private void inicializarPerguntas(int dificuldade)
     {
         RequestQueue queue = Volley.newRequestQueue(this);
 
