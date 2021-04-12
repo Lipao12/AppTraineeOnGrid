@@ -1,5 +1,8 @@
 package com.example.apptreineeongrid;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Question {
     private String text;
     private String answer;

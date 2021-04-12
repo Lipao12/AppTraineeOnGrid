@@ -5,21 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/telainicial"
+    android:background="@drawable/jogar_fundo_prancheta_1_c_pia_3"
     app:backgroundTint="@null"
-    tools:context=".MainActivity">
+    tools:context=".LoadingScreen">
 
-
-    <Button
-        android:id="@+id/botao_iniciar_game"
+    <ImageView
+        android:id="@+id/LoadingView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/toast_frame"
-        android:text="@string/iniciar"
-        android:textColor="#161F54"
-        app:backgroundTint="#FFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,7 @@ public class TelaDificuldade extends AppCompatActivity {
         mViewHolder.b_medio.setTypeface(fonte);
         mViewHolder.b_dificil.setTypeface(fonte);
 
-        Intent intent = new Intent(TelaDificuldade.this,TelaJogo.class);
+        Intent intent = new Intent(TelaDificuldade.this, LoadingScreen.class);
 
         mViewHolder.b_facil.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTreineeOnGrid">
-        <activity android:name=".TelaFinal"></activity>
-        <activity android:name=".TelaDificuldade" />
-        <activity android:name=".TelaCuriosidade" />
-        <activity android:name=".TelaJogo" />
+        <activity android:name=".TelaQuestion"/>
+        <activity android:name=".LoadingScreen"/>
+        <activity android:name=".TelaFinal"/>
+        <activity android:name=".TelaDificuldade"/>
+        <activity android:name=".TelaCuriosidade"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
