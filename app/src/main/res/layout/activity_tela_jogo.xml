@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TJview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo_medio"
@@ -15,8 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/TJOpc3"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icons8_casa_64" />
 
     <Button
@@ -31,32 +32,33 @@
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663" />
+        app:layout_constraintTop_toBottomOf="@+id/TJimageView"
+        app:layout_constraintVertical_bias="0.093" />
 
     <Button
         android:id="@+id/TJOpc2"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="@string/R2"
         android:textAllCaps="false"
         android:textColor="#071e50"
         app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TJOpc1" />
+        app:layout_constraintTop_toBottomOf="@+id/TJOpc1"
+        app:layout_constraintVertical_bias="0.189" />
 
     <Button
         android:id="@+id/TJOpc3"
         android:layout_width="0dp"
         android:layout_height="59dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="@string/R3"
         android:textAllCaps="false"
@@ -64,10 +66,10 @@
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TJOpc2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -88,14 +90,14 @@
         android:text="@string/b_continuar"
         android:textColor="#071e50"
         android:textSize="10sp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/TJOpc1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <TextView
         android:id="@+id/TJqnt_perguntas"
@@ -145,35 +147,44 @@
         android:layout_width="100dp"
         android:layout_height="64dp"
         android:text="@string/vcSabia"
-        android:visibility="gone"
+        android:visibility="visible"
         app:backgroundTint="#071e50"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/TJcontinuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.362" />
+        app:layout_constraintVertical_bias="0.863" />
 
     <ImageView
         android:id="@+id/TJrosto_feliz"
         android:layout_width="125dp"
         android:layout_height="121dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/TJcontinuar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/TJvcSabia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/acerto__14" />
 
     <ImageView
         android:id="@+id/TJrosto_triste"
         android:layout_width="124dp"
         android:layout_height="119dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/TJcontinuar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/TJvcSabia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/erro_14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="622dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

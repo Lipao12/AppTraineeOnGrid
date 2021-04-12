@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,6 +36,8 @@ public class TelaJogo extends AppCompatActivity {
     private Typeface fonte;
     private int perg_estacionada;
     private char mem_dificuldade;
+    int larguraTela;
+    int alturaTela;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class TelaJogo extends AppCompatActivity {
         this.mViewHolder.score_texto = findViewById(R.id.TJqnt_perguntas);
         this.mViewHolder.rosto_feliz = findViewById(R.id.TJrosto_feliz);
         this.mViewHolder.rosto_triste = findViewById(R.id.TJrosto_triste);
+        this.mViewHolder.view = findViewById(R.id.TJview);
 
         /*Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(res, android.R.drawable.toast_frame,null);*/
@@ -64,8 +68,8 @@ public class TelaJogo extends AppCompatActivity {
         botoes_acertar = new ArrayList<>();
 
         mudarFonte();
+        mudarPosicao_Tamanho();
 
-       // final boolean[] jogoAcabou = {false};
         char dificuldade = getIntent().getExtras().getChar("dificuldade");
 
         System.out.println("Dificuldade: "+dificuldade);
@@ -149,7 +153,7 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
-                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.INVISIBLE);
 
                     if(mViewHolder.r1.getText() == resp_correta.get(num_pergunta))
                     {
@@ -161,7 +165,7 @@ public class TelaJogo extends AppCompatActivity {
                     else
                     {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
-                        mViewHolder.r1.setBackgroundColor(0xFFCA1010);
+                        mViewHolder.r1.setBackgroundColor(0xD8CA1010);
                         acharRespCorreta();
                       //  jogoAcabou[0] = true;
                     }
@@ -177,7 +181,7 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
-                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.INVISIBLE);
 
                     if(mViewHolder.r2.getText() == resp_correta.get(num_pergunta))
                     {
@@ -189,7 +193,7 @@ public class TelaJogo extends AppCompatActivity {
                     else
                     {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
-                        mViewHolder.r2.setBackgroundColor(0xFFCA1010);
+                        mViewHolder.r2.setBackgroundColor(0xD8CA1010);
                         acharRespCorreta();
                        // jogoAcabou[0] = true;
                     }
@@ -205,7 +209,7 @@ public class TelaJogo extends AppCompatActivity {
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
-                    mViewHolder.imagem_perguntas.setVisibility(View.GONE);
+                    mViewHolder.imagem_perguntas.setVisibility(View.INVISIBLE);
 
                     if(mViewHolder.r3.getText() == resp_correta.get(num_pergunta))
                     {
@@ -217,7 +221,7 @@ public class TelaJogo extends AppCompatActivity {
                     else
                     {
                         mViewHolder.rosto_triste.setVisibility(View.VISIBLE);
-                        mViewHolder.r3.setBackgroundColor(0xFFCA1010);
+                        mViewHolder.r3.setBackgroundColor(0xD8CA1010);
                         acharRespCorreta();
                        // jogoAcabou[0] = true;
                     }
@@ -238,6 +242,7 @@ public class TelaJogo extends AppCompatActivity {
         ImageView imagem_perguntas;
         ImageView rosto_feliz;
         ImageView rosto_triste;
+        View view;
     }
 
     public void gerarPerguntasAleatorias()
@@ -276,11 +281,6 @@ public class TelaJogo extends AppCompatActivity {
         mViewHolder.pergunta_texto.setText(perguntas.get(num_pergunta));
     }
 
-    public static void set_rClicado(boolean clicado)
-    {
-        rClicado=clicado;
-    }
-
     public void imprimirQuantidadeDePergunta()
     {
         mViewHolder.score_texto.setText(perg_estacionada+"/"+perguntas.size());
@@ -310,6 +310,97 @@ public class TelaJogo extends AppCompatActivity {
         mViewHolder.r1.setTypeface(fonte);
         mViewHolder.r2.setTypeface(fonte);
         mViewHolder.r3.setTypeface(fonte);
+    }
+
+    private void mudarPosicao_Tamanho()
+    {
+        mViewHolder.view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                int alturaObjeto;
+                int tamanho;
+
+                //Remove o listenner para não ser novamente chamado.
+                mViewHolder.view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                //Coloca a largura igual à altura
+                larguraTela = mViewHolder.view.getWidth();
+                alturaTela = mViewHolder.view.getHeight();
+
+                System.out.println("Altura da tela: "+ alturaTela);
+                System.out.println("Largura da tela: "+ larguraTela);
+
+                alturaObjeto = mViewHolder.r1.getHeight();
+                System.out.println("Altura da botao: "+ alturaObjeto);
+
+                tamanho = mudarTamanho(alturaTela,alturaObjeto);
+                System.out.println("Tmanaha recebido : "+tamanho);
+
+                // BOTOES RESPOSTA
+                mViewHolder.r1.getLayoutParams().height = tamanho;
+                mViewHolder.r1.requestLayout();
+                mViewHolder.r2.getLayoutParams().height = tamanho;
+                mViewHolder.r2.requestLayout();
+                mViewHolder.r3.getLayoutParams().height = tamanho;
+                mViewHolder.r3.requestLayout();
+                mViewHolder.b_voltarTinicial.getLayoutParams().height = tamanho;
+                mViewHolder.b_voltarTinicial.requestLayout();
+
+                // BOTAO CASA
+                alturaObjeto = mViewHolder.b_voltarTinicial.getHeight();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto);
+                mViewHolder.b_voltarTinicial.getLayoutParams().height = tamanho/2;
+                mViewHolder.b_voltarTinicial.requestLayout();
+
+                // BOTAO CONTINUAR
+               /* alturaObjeto = mViewHolder.b_continuar.getHeight();
+                System.out.println("Altura da botao CONTINUE: "+ alturaObjeto);
+                tamanho = mudarTamanho(alturaTela,75);
+                System.out.println("Tmanaha recebido CONTINUE: "+tamanho);
+                mViewHolder.b_continuar.getLayoutParams().height = tamanho*5;
+                mViewHolder.b_continuar.requestLayout();
+
+                // BOTAO VC SABIA
+                alturaObjeto = mViewHolder.b_vcSabia.getHeight();
+                tamanho = mudarTamanho(alturaTela,250);
+                mViewHolder.b_vcSabia.getLayoutParams().height = tamanho;
+                mViewHolder.b_vcSabia.requestLayout();*/
+
+                // ROTOS
+                alturaObjeto = mViewHolder.rosto_feliz.getHeight();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto);
+                mViewHolder.rosto_feliz.getLayoutParams().height = tamanho;
+                mViewHolder.rosto_feliz.requestLayout();
+                mViewHolder.rosto_triste.getLayoutParams().height = tamanho;
+                mViewHolder.rosto_triste.requestLayout();
+
+                alturaObjeto = mViewHolder.imagem_perguntas.getHeight();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto);
+                mViewHolder.imagem_perguntas.getLayoutParams().height = tamanho;
+                mViewHolder.imagem_perguntas.requestLayout();
+
+                // TEXTO PERGUNTA
+                alturaObjeto = (int) mViewHolder.pergunta_texto.getTextSize();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto)/3;
+                mViewHolder.pergunta_texto.setTextSize(tamanho);
+
+                alturaObjeto = (int) mViewHolder.r1.getTextSize();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto)/3;
+                mViewHolder.r1.setTextSize(tamanho);
+                mViewHolder.r2.setTextSize(tamanho);
+                mViewHolder.r3.setTextSize(tamanho);
+            }
+        });
+    }
+
+    private int mudarTamanho(int tamanhoTela, int tamanhoObjeto)
+    {
+        int tamanho;
+
+        tamanho = tamanhoTela * tamanhoObjeto / 1920;
+        System.out.println("Tamanho: "+tamanho);
+
+        return tamanho;
     }
 
     private void inicializarPerguntas(char dificuldade) // FOI COLOCADA ATE A PERGUNTA 20
