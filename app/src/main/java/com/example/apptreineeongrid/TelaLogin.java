@@ -42,7 +42,7 @@ public class TelaLogin extends AppCompatActivity {
 
                     if(t_user.getText().toString().equals(user) && t_password.getText().toString().equals(password))
                     {
-                        Intent intent = new Intent(TelaLogin.this, TelaDificuldade.class);
+                        Intent intent = new Intent(TelaLogin.this, TelaIniciar.class);
                         startActivity(intent);
                     }
                     else
