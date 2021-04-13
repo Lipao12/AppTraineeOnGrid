@@ -36,6 +36,8 @@ public class TelaDificuldade extends AppCompatActivity {
 
         Intent intent = new Intent(TelaDificuldade.this, LoadingScreen.class);
 
+        intent.putExtra("token", getIntent().getExtras().getString("token"));
+
         mViewHolder.b_facil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

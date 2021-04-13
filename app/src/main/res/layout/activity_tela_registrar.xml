@@ -31,7 +31,7 @@
         android:ems="10"
         android:hapticFeedbackEnabled="false"
         android:inputType="textPersonName"
-        android:text="User"
+        android:text=""
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

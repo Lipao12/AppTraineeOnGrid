@@ -148,18 +148,16 @@ public class TelaQuestion extends AppCompatActivity {
                 });
                 this.b_r2.setOnClickListener(v -> {
                     arr.add(new Pair<Button, Integer>(this.b_r2, 0xFFCA1010));
-                    arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
                     failFunc.run();
                 });
                 this.b_r3.setOnClickListener(v -> {
                     arr.add(new Pair<Button, Integer>(this.b_r3, 0xFFCA1010));
-                    arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
                     failFunc.run();
                 });
                 break;
             }
             case 1: {
-                arr.add(new Pair<Button, Integer>(this.b_r1, 0xD806B50D));
+                arr.add(new Pair<Button, Integer>(this.b_r2, 0xD806B50D));
                 this.b_r2.setText(this.question.getCorrect());
                 this.b_r1.setText(this.question.getIncorrect1());
                 this.b_r3.setText(this.question.getIncorrect2());
@@ -168,12 +166,10 @@ public class TelaQuestion extends AppCompatActivity {
                 });
                 this.b_r1.setOnClickListener(v -> {
                     arr.add(new Pair<Button, Integer>(this.b_r1, 0xFFCA1010));
-                    arr.add(new Pair<Button, Integer>(this.b_r2, 0xD806B50D));
                     failFunc.run();
                 });
                 this.b_r3.setOnClickListener(v -> {
                     arr.add(new Pair<Button, Integer>(this.b_r3, 0xFFCA1010));
-                    arr.add(new Pair<Button, Integer>(this.b_r2, 0xD806B50D));
                     failFunc.run();
                 });
                 break;
@@ -184,17 +180,14 @@ public class TelaQuestion extends AppCompatActivity {
                 this.b_r2.setText(this.question.getIncorrect1());
                 this.b_r1.setText(this.question.getIncorrect2());
                 this.b_r3.setOnClickListener(v -> {
-                    this.b_r3.setBackgroundColor(0xD806B50D);
                     successFunc.run();
                 });
                 this.b_r2.setOnClickListener(v -> {
                     arr.add(new Pair<Button, Integer>(this.b_r2, 0xFFCA1010));
-                    arr.add(new Pair<Button, Integer>(this.b_r3, 0xD806B50D));
                     failFunc.run();
                 });
                 this.b_r1.setOnClickListener(v -> {
                     arr.add(new Pair<Button, Integer>(this.b_r1, 0xFFCA1010));
-                    arr.add(new Pair<Button, Integer>(this.b_r3, 0xD806B50D));
                     failFunc.run();
                 });
                 break;

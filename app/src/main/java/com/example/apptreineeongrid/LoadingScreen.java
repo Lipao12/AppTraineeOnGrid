@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class LoadingScreen extends AppCompatActivity {
@@ -78,7 +81,15 @@ public class LoadingScreen extends AppCompatActivity {
                         // TODO: Handle error
                         LoadingScreen.this.bail(e.getMessage());
                     }
-                });
+                }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<>();
+
+                    headers.put("Authorization", "Bearer " + getIntent().getExtras().getString("token"));
+                    return headers;
+            }
+        };
 
         queue.add(jsonObjectRequest);
     }

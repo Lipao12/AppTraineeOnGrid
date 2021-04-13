@@ -26,6 +26,7 @@ public class TelaIniciar extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(TelaIniciar.this, TelaDificuldade.class);
+                intent.putExtra("token", getIntent().getExtras().getString("token"));
                 startActivity(intent);
             }
         });
@@ -35,6 +36,7 @@ public class TelaIniciar extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(TelaIniciar.this, TelaPontucao.class);
+                intent.putExtra("token", getIntent().getExtras().getString("token"));
                 startActivity(intent);
             }
         });
