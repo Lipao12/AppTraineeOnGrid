@@ -266,7 +266,7 @@ public class TelaQuestion extends AppCompatActivity {
         builder1.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent home = new Intent(TelaQuestion.this, MainActivity.class);
+                        Intent home = new Intent(TelaQuestion.this, TelaIniciar.class);
                         home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(home);
                         dialog.cancel();

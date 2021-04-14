@@ -56,10 +56,6 @@ public class TelaPontucao extends AppCompatActivity {
         mudarFonte();
         mudarPosicao_Tamanho();
 
-        // pegar o highscore de cada dificuldade do usuario
-        /*highscoreFacil = 0;
-        highscoreMedio = 0;
-        highscoreDificil = 0;*/
         this.requestScores();
 
         mViewHolder.t_scoreFacil.setText(String.valueOf(highscoreFacil));
@@ -69,14 +65,12 @@ public class TelaPontucao extends AppCompatActivity {
         mViewHolder.b_apagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*mViewHolder.t_scoreFacil.setText("0");
-                mViewHolder.t_scoreMedio.setText("0");
-                mViewHolder.t_scoreDificil.setText("0");*/
-
                 // setar o highscore de cada dificuldade do usuario como 0
                 TelaPontucao.this.setScore('f', -2);
                 TelaPontucao.this.setScore('m', -2);
                 TelaPontucao.this.setScore('d', -2);
+
+                requestScores();
             }
         });
 
