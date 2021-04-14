@@ -3,10 +3,15 @@ package com.example.apptreineeongrid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,6 +31,11 @@ public class TelaLogin extends AppCompatActivity {
     Button b_register;
     EditText t_user;
     EditText t_password;
+    TextView texto_login;
+    View view;
+    int larguraTela;
+    int alturaTela;
+    Typeface fonte;
 
     RequestQueue queue;
 
@@ -42,8 +52,13 @@ public class TelaLogin extends AppCompatActivity {
         this.b_register = findViewById(R.id.TLregister);
         this.t_password = findViewById(R.id.TLpassword);
         this.t_user = findViewById(R.id.TLuser);
+        this.texto_login = findViewById(R.id.TLtextoLogin);
+        this.view = findViewById(R.id.TLview);
 
         this.queue = Volley.newRequestQueue(this);
+
+        mudarFonte();
+        mudarPosicao_Tamanho();
 
         b_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,5 +116,50 @@ public class TelaLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void mudarFonte()
+    {
+        fonte = Typeface.createFromAsset(getAssets(),"Press Start K.ttf");
+        b_register.setTypeface(fonte);
+        b_login.setTypeface(fonte);
+        texto_login.setTypeface(fonte);
+    }
+
+    private void mudarPosicao_Tamanho()
+    {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                int alturaObjeto;
+                int tamanho;
+
+                //Remove o listenner para não ser novamente chamado.
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                larguraTela = view.getWidth();
+                alturaTela = view.getHeight();
+
+                alturaObjeto = b_login.getHeight();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto);
+                b_login.getLayoutParams().height = tamanho;
+                b_login.requestLayout();
+                b_register.getLayoutParams().height = tamanho;
+                b_register.requestLayout();
+
+                alturaObjeto = (int) b_register.getTextSize();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto)/3;
+                b_register.setTextSize(tamanho);
+                b_login.setTextSize(tamanho);
+            }
+        });
+    }
+
+    private int mudarTamanho(int tamanhoTela, int tamanhoObjeto)
+    {
+        int tamanho;
+        tamanho = tamanhoTela * tamanhoObjeto / 1920;
+        return tamanho;
     }
 }

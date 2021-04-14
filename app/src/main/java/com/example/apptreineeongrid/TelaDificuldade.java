@@ -77,4 +77,6 @@ public class TelaDificuldade extends AppCompatActivity {
         Button b_dificil;
         ImageView b_voltar;
     }
+
+
 }

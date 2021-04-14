@@ -3,10 +3,14 @@ package com.example.apptreineeongrid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +28,12 @@ public class TelaRegistrar extends AppCompatActivity {
     Button b_register;
     EditText t_password;
     EditText t_user;
+    TextView texto_registrar;
+    ImageView b_voltar;
+    View view;
+    int alturaTela;
+    int larguraTela;
+    Typeface fonte;
     RequestQueue queue;
 
     @Override
@@ -34,8 +44,14 @@ public class TelaRegistrar extends AppCompatActivity {
         this.b_register = findViewById(R.id.TRregister);
         this.t_password = findViewById(R.id.TRpassword);
         this.t_user = findViewById(R.id.TRuser);
+        this.texto_registrar = findViewById(R.id.TRtextoRegistrar);
+        this.view = findViewById(R.id.TRview);
+        this.b_voltar = findViewById(R.id.TRvoltar);
 
         this.queue = Volley.newRequestQueue(this);
+
+        mudarFonte();
+        mudarPosicao_Tamanho();
 
         b_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +104,54 @@ public class TelaRegistrar extends AppCompatActivity {
                 TelaRegistrar.this.queue.add(jsonObjectRequest);
             }
         });
+
+        this.b_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    private void mudarFonte()
+    {
+        fonte = Typeface.createFromAsset(getAssets(),"Press Start K.ttf");
+        texto_registrar.setTypeface(fonte);
+        b_register.setTypeface(fonte);
+
+    }
+
+    private void mudarPosicao_Tamanho()
+    {
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                int alturaObjeto;
+                int tamanho;
+
+                //Remove o listenner para não ser novamente chamado.
+                view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                larguraTela = view.getWidth();
+                alturaTela = view.getHeight();
+
+                alturaObjeto = b_register.getHeight();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto);
+                b_register.getLayoutParams().height = tamanho;
+                b_register.requestLayout();
+
+                alturaObjeto = (int) b_register.getTextSize();
+                tamanho = mudarTamanho(alturaTela,alturaObjeto)/3;
+                b_register.setTextSize(tamanho);
+            }
+        });
+    }
+
+    private int mudarTamanho(int tamanhoTela, int tamanhoObjeto)
+    {
+        int tamanho;
+        tamanho = tamanhoTela * tamanhoObjeto / 1920;
+        return tamanho;
     }
 }

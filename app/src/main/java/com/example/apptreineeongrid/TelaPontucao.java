@@ -93,7 +93,7 @@ public class TelaPontucao extends AppCompatActivity {
 
                 //Remove o listenner para não ser novamente chamado.
                 mViewHolder.view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                //Coloca a largura igual à altura
+
                 larguraTela = mViewHolder.view.getWidth();
                 alturaTela = mViewHolder.view.getHeight();
 
