@@ -70,6 +70,7 @@ public class LoadingScreen extends AppCompatActivity {
                                 LoadingScreen.this.json_questions.add(object);
                             }
                         } catch (JSONException e) {
+                            e.printStackTrace();
                             LoadingScreen.this.bail(e.getMessage());
                         }
                         Toast.makeText(getApplicationContext(),"Conteudo carregado.", Toast.LENGTH_SHORT).show();
@@ -79,6 +80,7 @@ public class LoadingScreen extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError e) {
                         // TODO: Handle error
+                        e.printStackTrace();
                         LoadingScreen.this.bail(e.getMessage());
                     }
                 }) {
@@ -119,7 +121,10 @@ public class LoadingScreen extends AppCompatActivity {
     public void endGame() {
         Intent end = new Intent(this, TelaFinal.class);
         end.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        char difficulty = getIntent().getExtras().getChar("dificuldade");
         end.putExtra("final_score", this.score);
+        end.putExtra("dificuldade", difficulty);
+        end.putExtra("token", getIntent().getExtras().getString("token"));
         startActivity(end);
     }
 

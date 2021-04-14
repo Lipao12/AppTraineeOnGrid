@@ -70,7 +70,6 @@ public class TelaLogin extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                System.out.println(login_data.toString());
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                         (Request.Method.POST, url, login_data, new Response.Listener<JSONObject>() {
 
@@ -79,6 +78,7 @@ public class TelaLogin extends AppCompatActivity {
                                 JSONObject success = null;
                                 try {
                                     Intent telaInicial = new Intent(TelaLogin.this, TelaIniciar.class);
+                                    System.out.println(response.toString());
                                     success = response.getJSONObject("success");
                                     TelaLogin.this.token = success.getString("token");
                                     System.out.println(String.format("Token obtido: %s", TelaLogin.this.token));
@@ -88,11 +88,11 @@ public class TelaLogin extends AppCompatActivity {
 
                                 } catch (JSONException e) {
                                     Intent intent = getIntent();
+                                    e.printStackTrace();
                                     finish();
                                     Toast.makeText(getApplicationContext(),"Falha na autenticaçao.", Toast.LENGTH_SHORT).show();
                                     startActivity(intent);
                                 }
-                                Toast.makeText(getApplicationContext(),"Token adiquirido.", Toast.LENGTH_SHORT).show();
 
                             }
                         }, new Response.ErrorListener() {

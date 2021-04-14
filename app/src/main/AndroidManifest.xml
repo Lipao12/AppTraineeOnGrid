@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTreineeOnGrid">
-        <activity android:name=".TelaPontucao"></activity>
+        <activity android:name=".TelaPontucao"/>
         <activity android:name=".TelaIniciar" />
         <activity android:name=".TelaRegistrar" />
         <activity
