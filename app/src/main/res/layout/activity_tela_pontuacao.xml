@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:background="@android:drawable/toast_frame"
-        android:text="Button"
+        android:text="limpar"
         app:backgroundTint="#C7522F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
