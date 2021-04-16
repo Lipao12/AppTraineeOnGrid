@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -38,6 +39,7 @@ public class TelaJogo extends AppCompatActivity {
     private char mem_dificuldade;
     int larguraTela;
     int alturaTela;
+    boolean counter_continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class TelaJogo extends AppCompatActivity {
         this.mViewHolder.rosto_feliz = findViewById(R.id.TJrosto_feliz);
         this.mViewHolder.rosto_triste = findViewById(R.id.TJrosto_triste);
         this.mViewHolder.view = findViewById(R.id.TJview);
+        this.mViewHolder.t_counter = findViewById(R.id.timer);
 
         /*Resources res = getResources();
         Drawable drawable = ResourcesCompat.getDrawable(res, android.R.drawable.toast_frame,null);*/
@@ -76,6 +79,8 @@ public class TelaJogo extends AppCompatActivity {
         if(dificuldade != '\0' )
         {
             mem_dificuldade = dificuldade;
+            counter_continue = true;
+            _counter(15);
             mViewHolder.rosto_triste.setVisibility(View.GONE);
             mViewHolder.rosto_feliz.setVisibility(View.GONE);
             mViewHolder.b_continuar.setVisibility(View.GONE);
@@ -111,9 +116,11 @@ public class TelaJogo extends AppCompatActivity {
                 mViewHolder.b_vcSabia.setVisibility(View.GONE);
                 mViewHolder.pergunta_texto.setVisibility(View.VISIBLE);
                 mViewHolder.imagem_perguntas.setVisibility(View.VISIBLE);
-                imprimirQuantidadeDePergunta();
+                if(perg_estacionada <= pergs_fazer.size())
+                    imprimirQuantidadeDePergunta();
                // if(!jogoAcabou[0])
                     gerarPerguntasAleatorias();
+                counter_continue = true;
                // else
                // {
              //       Intent intent = new Intent(TelaJogo.this,TelaFinal.class);
@@ -150,6 +157,7 @@ public class TelaJogo extends AppCompatActivity {
                if(!rClicado)
                 {
                     rClicado=true;
+                    counter_continue = false;
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
                     mViewHolder.pergunta_texto.setVisibility(View.GONE);
@@ -177,6 +185,7 @@ public class TelaJogo extends AppCompatActivity {
             public void onClick(View v) {
                 if(!rClicado)
                 {
+                    counter_continue = false;
                     rClicado=true;
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
@@ -205,6 +214,7 @@ public class TelaJogo extends AppCompatActivity {
             public void onClick(View v) {
                 if(!rClicado)
                 {
+                    counter_continue = false;
                     rClicado=true;
                     mViewHolder.b_continuar.setVisibility(View.VISIBLE);
                     mViewHolder.b_vcSabia.setVisibility(View.VISIBLE);
@@ -243,6 +253,23 @@ public class TelaJogo extends AppCompatActivity {
         ImageView rosto_feliz;
         ImageView rosto_triste;
         View view;
+        TextView t_counter;
+    }
+
+    private void _counter(int i, Runnable callback) {
+        this.mViewHolder.t_counter.setText(Integer.toString(i));
+        if(this.counter_continue) {
+            if (i > 0) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        int j = i;
+                        j--;
+                        _counter(j, callback);
+                    }
+                }, 1000);
+            } else callback.run();
+        }
     }
 
     public void gerarPerguntasAleatorias()
