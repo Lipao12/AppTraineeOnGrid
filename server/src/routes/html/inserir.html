@@ -1,0 +1,17 @@
+<html>
+    <header>
+        <title>Inserir dados</title>
+    </header>
+    <body>
+        Inserir informações no banco de dados
+        <form action='/question/save' method='POST'>
+            <p>Texto da questão: <input type="text" name="text"></p>
+            <p>Resposta correta: <input type="text" name="correct"></p>
+            <p>Resposta incorreta 1: <input type="text" name="incorrect1"></p>
+            <p>Resposta incorreta 2: <input type="text" name="incorrect2"></p>
+            <p>dificuldade (apenas um caractere: f, m ou d): <input type="text" name="difficulty"></p>
+            <p>Curiosidade: <input type="text" name="curiosity"></p>
+            <button type="submit">Enviar</button>
+        </form>
+    </body>
+</html>

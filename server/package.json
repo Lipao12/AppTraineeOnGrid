@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "uuid": "^8.3.2"
+  },
+  "name": "AppOngridTrainner_intermediario",
+  "version": "1.0.0",
+  "description": "Aplicativo intermediario para banco de dados",
+  "main": "bin/app.js",
+  "author": "Matheus Garcias",
+  "license": "MIT"
+}
